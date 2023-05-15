@@ -8,7 +8,7 @@ await build({
   shims: {
     deno: true,
     crypto: true,
-    undici: true
+    undici: true,
   },
   package: {
     name: "shopware-app-server-sdk",

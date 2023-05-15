@@ -112,4 +112,4 @@ const result = printer.printList(
   sourceFile,
 );
 
-Deno.writeTextFileSync('../types/webhooks.d.ts', result);
+Deno.writeTextFileSync("../types/webhooks.d.ts", result);

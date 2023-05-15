@@ -50,5 +50,5 @@ export async function verify(signature: string, data: string, secret: string) {
 }
 
 export function randomString() {
-  return crypto.randomUUID().replaceAll('-', '').substring(0, 21)
+  return crypto.randomUUID().replaceAll("-", "").substring(0, 21);
 }
