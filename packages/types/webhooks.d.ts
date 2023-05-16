@@ -1,49 +1,266 @@
+export interface Customer {
+    id: string;
+    groupId: string;
+    defaultPaymentMethodId: string;
+    salesChannelId: string;
+    languageId: string;
+    lastPaymentMethodId: string;
+    defaultBillingAddressId: string;
+    defaultShippingAddressId: string;
+    autoIncrement: number;
+    customerNumber: string;
+    salutationId: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    email: string;
+    title: string;
+    vatIds: Array<unknown>;
+    affiliateCode: string;
+    campaignCode: string;
+    active: boolean;
+    doubleOptInRegistration: boolean;
+    doubleOptInEmailSentDate: string;
+    doubleOptInConfirmDate: string;
+    hash: string;
+    guest: boolean;
+    firstLogin: string;
+    lastLogin: string;
+    newsletterSalesChannelIds: unknown;
+    birthday: string;
+    lastOrderDate: string;
+    orderCount: number;
+    orderTotalAmount: number;
+    reviewCount: number;
+    customFields: unknown;
+    legacyPassword: string;
+    legacyEncoder: string;
+    remoteAddress: unknown;
+    tagIds: Array<unknown>;
+    requestedGroupId: string;
+    boundSalesChannelId: string;
+    accountType: string;
+    createdById: string;
+    updatedById: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface Order {
+    id: string;
+    versionId: string;
+    autoIncrement: number;
+    orderNumber: string;
+    billingAddressId: string;
+    billingAddressVersionId: string;
+    currencyId: string;
+    languageId: string;
+    salesChannelId: string;
+    orderDateTime: string;
+    orderDate: string;
+    price: unknown;
+    amountTotal: number;
+    amountNet: number;
+    positionPrice: number;
+    taxStatus: string;
+    shippingCosts: unknown;
+    shippingTotal: number;
+    currencyFactor: number;
+    deepLinkCode: string;
+    affiliateCode: string;
+    campaignCode: string;
+    customerComment: string;
+    stateId: string;
+    ruleIds: Array<unknown>;
+    customFields: unknown;
+    createdById: string;
+    updatedById: string;
+    itemRounding: unknown;
+    totalRounding: unknown;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface OrderTransaction {
+    id: string;
+    versionId: string;
+    orderId: string;
+    orderVersionId: string;
+    paymentMethodId: string;
+    amount: unknown;
+    stateId: string;
+    customFields: unknown;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface CustomerGroup {
+    id: string;
+    name: string;
+    displayGross: boolean;
+    customFields: unknown;
+    registrationActive: boolean;
+    registrationTitle: string;
+    registrationIntroduction: string;
+    registrationOnlyCompanyRegistration: boolean;
+    registrationSeoMetaDescription: string;
+    createdAt: string;
+    updatedAt: string;
+    translated: {name?: string, customFields?: unknown, registrationTitle?: string, registrationIntroduction?: string, registrationOnlyCompanyRegistration?: boolean, registrationSeoMetaDescription?: string};
+}
+
+export interface CustomerRecovery {
+    id: string;
+    hash: string;
+    customerId: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface NewsletterRecipient {
+    id: string;
+    email: string;
+    title: string;
+    firstName: string;
+    lastName: string;
+    zipCode: string;
+    city: string;
+    street: string;
+    status: string;
+    hash: string;
+    customFields: unknown;
+    confirmedAt: string;
+    salutationId: string;
+    languageId: string;
+    salesChannelId: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface Product {
+    id: string;
+    versionId: string;
+    parentId: string;
+    parentVersionId: string;
+    manufacturerId: string;
+    productManufacturerVersionId: string;
+    unitId: string;
+    taxId: string;
+    coverId: string;
+    productMediaVersionId: string;
+    deliveryTimeId: string;
+    featureSetId: string;
+    canonicalProductId: string;
+    cmsPageId: string;
+    cmsPageVersionId: string;
+    price: unknown;
+    productNumber: string;
+    stock: number;
+    restockTime: number;
+    autoIncrement: number;
+    active: boolean;
+    availableStock: number;
+    available: boolean;
+    isCloseout: boolean;
+    variation: Array<unknown>;
+    displayGroup: string;
+    variantListingConfig: unknown;
+    variantRestrictions: unknown;
+    manufacturerNumber: string;
+    ean: string;
+    purchaseSteps: number;
+    maxPurchase: number;
+    minPurchase: number;
+    purchaseUnit: number;
+    referenceUnit: number;
+    shippingFree: boolean;
+    purchasePrices: unknown;
+    markAsTopseller: boolean;
+    weight: number;
+    width: number;
+    height: number;
+    length: number;
+    releaseDate: string;
+    ratingAverage: number;
+    categoryTree: Array<unknown>;
+    propertyIds: Array<unknown>;
+    optionIds: Array<unknown>;
+    streamIds: Array<unknown>;
+    tagIds: Array<unknown>;
+    categoryIds: Array<unknown>;
+    childCount: number;
+    customFieldSetSelectionActive: boolean;
+    sales: number;
+    states: Array<unknown>;
+    metaDescription: string;
+    name: string;
+    keywords: string;
+    description: string;
+    metaTitle: string;
+    packUnit: string;
+    packUnitPlural: string;
+    customFields: unknown;
+    slotConfig: unknown;
+    customSearchKeywords: Array<unknown>;
+    createdAt: string;
+    updatedAt: string;
+    translated: {metaDescription?: string, name?: string, keywords?: string, description?: string, metaTitle?: string, packUnit?: string, packUnitPlural?: string, customFields?: unknown, slotConfig?: unknown, customSearchKeywords?: Array<unknown>};
+}
+
+export interface UserRecovery {
+    id: string;
+    hash: string;
+    userId: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
 export interface CheckoutCustomerBeforeLogin {
     email: string;
 }
 
 export interface CheckoutCustomerChangedPaymentMethod {
-    customer: unknown;
+    customer: Customer;
 }
 
 export interface CheckoutCustomerDeleted {
-    customer: unknown;
+    customer: Customer;
 }
 
 export interface CheckoutCustomerDoubleOptInGuestOrder {
-    customer: unknown;
+    customer: Customer;
     confirmUrl: string;
 }
 
 export interface CheckoutCustomerDoubleOptInRegistration {
-    customer: unknown;
+    customer: Customer;
     confirmUrl: string;
 }
 
 export interface CheckoutCustomerGuestRegister {
-    customer: unknown;
+    customer: Customer;
 }
 
 export interface CheckoutCustomerLogin {
-    customer: unknown;
+    customer: Customer;
     contextToken: string;
 }
 
 export interface CheckoutCustomerLogout {
-    customer: unknown;
+    customer: Customer;
 }
 
 export interface CheckoutCustomerRegister {
-    customer: unknown;
+    customer: Customer;
 }
 
 export interface CheckoutOrderPaymentMethodChanged {
-    order: unknown;
-    orderTransaction: unknown;
+    order: Order;
+    orderTransaction: OrderTransaction;
 }
 
 export interface CheckoutOrderPlaced {
-    order: unknown;
+    order: Order;
 }
 
 export interface ContactFormSend {
@@ -51,18 +268,18 @@ export interface ContactFormSend {
 }
 
 export interface CustomerGroupRegistrationAccepted {
-    customer: unknown;
-    customerGroup: unknown;
+    customer: Customer;
+    customerGroup: CustomerGroup;
 }
 
 export interface CustomerGroupRegistrationDeclined {
-    customer: unknown;
-    customerGroup: unknown;
+    customer: Customer;
+    customerGroup: CustomerGroup;
 }
 
 export interface CustomerRecoveryRequest {
-    customerRecovery: unknown;
-    customer: unknown;
+    customerRecovery: CustomerRecovery;
+    customer: Customer;
     resetUrl: string;
     shopName: string;
 }
@@ -84,16 +301,16 @@ export interface MailSent {
 }
 
 export interface NewsletterConfirm {
-    newsletterRecipient: unknown;
+    newsletterRecipient: NewsletterRecipient;
 }
 
 export interface NewsletterRegister {
-    newsletterRecipient: unknown;
+    newsletterRecipient: NewsletterRecipient;
     url: string;
 }
 
 export interface NewsletterUnsubscribe {
-    newsletterRecipient: unknown;
+    newsletterRecipient: NewsletterRecipient;
 }
 
 export interface ProductExportLog {
@@ -102,339 +319,339 @@ export interface ProductExportLog {
 
 export interface ReviewFormSend {
     reviewFormData: unknown;
-    product: unknown;
+    product: Product;
 }
 
 export interface StateEnterOrderStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderStateCompleted {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderStateInProgress {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderDeliveryStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderDeliveryStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderDeliveryStateReturned {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderDeliveryStateReturnedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderDeliveryStateShipped {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderDeliveryStateShippedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderLineItemStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderLineItemStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderLineItemStateReturnRequested {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderLineItemStateReturned {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderLineItemStateReturnedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderLineItemStateShipped {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderLineItemStateShippedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderReturnStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderReturnStateDone {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderReturnStateInProgress {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderReturnStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateAuthorized {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateChargeback {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateFailed {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateInProgress {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStatePaid {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStatePaidPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateRefunded {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateRefundedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateReminded {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionStateUnconfirmed {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionCaptureStateCompleted {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionCaptureStateFailed {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionCaptureStatePending {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateCompleted {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateFailed {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateInProgress {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderStateCompleted {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderStateInProgress {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderDeliveryStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderDeliveryStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderDeliveryStateReturned {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderDeliveryStateReturnedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderDeliveryStateShipped {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderDeliveryStateShippedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderLineItemStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderLineItemStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderLineItemStateReturnRequested {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderLineItemStateReturned {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderLineItemStateReturnedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderLineItemStateShipped {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderLineItemStateShippedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderReturnStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderReturnStateDone {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderReturnStateInProgress {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderReturnStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateAuthorized {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateChargeback {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateFailed {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateInProgress {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStatePaid {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStatePaidPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateRefunded {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateRefundedPartially {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateReminded {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionStateUnconfirmed {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionCaptureStateCompleted {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionCaptureStateFailed {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionCaptureStatePending {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateCancelled {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateCompleted {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateFailed {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateInProgress {
-    order: unknown;
+    order: Order;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateOpen {
-    order: unknown;
+    order: Order;
 }
 
 export interface UserRecoveryRequest {
-    userRecovery: unknown;
+    userRecovery: UserRecovery;
     resetUrl: string;
 }
 
