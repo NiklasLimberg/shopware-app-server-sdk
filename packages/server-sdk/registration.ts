@@ -16,7 +16,7 @@ export type ShopInfo = {
   shopId: string;
   shopUrl: string;
   shopwareAppSignature: string;
-  timeStamp: string;
+  timestamp: string;
 };
 
 export async function createRegistration(
@@ -24,13 +24,13 @@ export async function createRegistration(
     shopId,
     shopUrl,
     shopwareAppSignature,
-    timeStamp,
+    timestamp,
   }: ShopInfo,
   appSecret: AppInformation["appSecret"],
 ): Promise<PendingRegistration> {
   const isValid = await verify(
     shopwareAppSignature,
-    `shop-id=${shopId}&shop-url=${shopUrl}&timestamp=${timeStamp}`,
+    `shop-id=${shopId}&shop-url=${shopUrl}&timestamp=${timestamp}`,
     appSecret,
   );
 
