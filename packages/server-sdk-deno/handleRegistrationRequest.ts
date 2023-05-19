@@ -10,7 +10,7 @@ export async function handleRegistrationRequest(
   appConfig: AppServerOptions["appConfig"],
   pendingRegistrationStorage:
     AppServerOptions["storage"]["pendingRegistration"],
-) {
+): Promise<Response> {
   const searchParams = new URL(request.url).searchParams;
 
   const registrationParamter = ["shop-id", "shop-url", "timestamp"].map(
@@ -55,10 +55,7 @@ export async function handleRegistrationRequest(
     timestamp,
   }, appConfig.appSecret);
 
-  pendingRegistrationStorage.set({
-    shopId,
-    shopSecret: pendingRegistration.shopSecret,
-  });
+  pendingRegistrationStorage.set(pendingRegistration);
 
   const registrationResponse = await createRegistationResponse(
     pendingRegistration,

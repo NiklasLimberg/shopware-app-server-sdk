@@ -1,6 +1,6 @@
 import { verify } from "./crypto.ts";
 
-export type WebHookInvocation = {
+type WebHookInvocation = {
   shopSignature: string;
   webHookBody: string;
 };

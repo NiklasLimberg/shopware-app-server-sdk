@@ -1,13 +1,15 @@
 import type { Events } from "../types/webhooks.d.ts";
 
-type Callback = (
-  message: Events[keyof Events],
+type MaybePromise<T> = T | Promise<T>;
+
+type Callback<T extends keyof Events> = (
+  message: Events[T],
   shop: Shop,
-) => Promise<void> | void;
+) => MaybePromise<void | unknown>;
 
 export type WebhookListener = {
   name: string;
-  callback: Callback;
+  callback: Callback<keyof Events>;
 };
 
 export type Shop = {
@@ -22,9 +24,9 @@ export type Shop = {
 export type PendingRegistration = {
   shopId: string;
   shopSecret: string;
+  shopUrl: string;
 };
 
-type MaybePromise<T> = T | Promise<T>;
 
 export type PendingRegistrationStorage = {
   set: (registration: PendingRegistration) => void;

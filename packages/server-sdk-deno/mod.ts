@@ -4,8 +4,6 @@ import type { Events } from "../types/webhooks.d.ts";
 import type {
   AppServerOptions,
   Callback,
-  PendingRegistration,
-  Shop,
   WebhookListener,
 } from "./types.d.ts";
 
@@ -14,42 +12,40 @@ import { handleConfirmationRequest } from "./handleConfirmationRequest.ts";
 
 import { verify } from "../server-sdk/crypto.ts";
 
-class AppServer {
+export class AppServer {
   #appConfig: AppServerOptions["appConfig"];
   #storage: AppServerOptions["storage"];
+  #routes: Map<string, WebhookListener> = new Map();
 
   constructor({ appConfig, storage }: AppServerOptions) {
     this.#appConfig = appConfig;
     this.#storage = storage;
   }
 
-  routes: Map<string, WebhookListener> = new Map();
-
   registerWebHook<T extends keyof Events>(
     { url, name }: { url: string; name: T },
-    callback: Callback,
+    callback: Callback<T>,
   ) {
-    if (this.routes.has(url)) {
+    if (this.#routes.has(url)) {
       throw new Error(`Webhook was already registered for: ${url}`);
     }
 
-    this.routes.set(url, {
+    this.#routes.set(url, {
       name,
-      callback,
+      callback: callback as Callback<keyof Events>,
     });
   }
 
   async handle(request: Request): Promise<Response | null> {
-    // todo check invocations for methods
-    // if (request.method !== "POST") {
-    //  return new Response("Method not allowed", {
-    //    status: 405,
-    //  });
-    //}
-
     const url = new URL(request.url);
 
     if (url.pathname === this.#appConfig.registrationUrl) {
+      if (request.method !== "GET") {
+        return new Response("Method not allowed", {
+          status: 405,
+        });
+      }
+
       return handleRegistrationRequest(
         request,
         this.#appConfig,
@@ -58,13 +54,25 @@ class AppServer {
     }
 
     if (url.pathname === this.#appConfig.confirmationUrl) {
+      if (request.method !== "POST") {
+        return new Response("Method not allowed", {
+          status: 405,
+        });
+      }
+
       return handleConfirmationRequest(request, this.#storage);
     }
 
-    const listener = this.routes.get(url.pathname);
+    const listener = this.#routes.get(url.pathname);
 
     if (!listener) {
       return null;
+    }
+
+    if (request.method !== "POST") {
+      return new Response("Method not allowed", {
+        status: 405,
+      });
     }
 
     const shopwareShopSignature = request.headers.get(
@@ -85,7 +93,6 @@ class AppServer {
     );
 
     if (!shopRegistration) {
-      console.log(typeof shopRegistration);
       return new Response("Internal server error", { status: 500 });
     }
 
@@ -116,70 +123,9 @@ class AppServer {
     return serve(async (request) => {
       const response = await this.handle(request);
 
-      console.log(await response?.clone().text());
-
-      return response ?? new Response(`Not found`, {
+      return response ?? new Response("Not found", {
         status: 404,
       });
     }, options);
   }
 }
-
-const kv = await Deno.openKv();
-
-const server = new AppServer({
-  appConfig: {
-    appBaseUrl: "localhost:3000",
-    appName: "TestApp",
-    appSecret: "TEST",
-    registrationUrl: "/app/register",
-    confirmationUrl: "/app/register/confirm",
-  },
-  storage: {
-    shopRegistration: {
-      set: (shop) => kv.set(["shopRegistration", shop.shopId], shop),
-      get: async (id) => {
-        const kvEntry = await kv.get<Shop>(["shopRegistration", id]);
-        return kvEntry?.value;
-      },
-    },
-    pendingRegistration: {
-      set: (pendingRegistration) =>
-        kv.set(
-          ["pendingRegistration", pendingRegistration.shopId],
-          pendingRegistration,
-        ),
-      get: async (id) => {
-        const kvEntry = kv.get<PendingRegistration>([
-          "pendingRegistration",
-          id,
-        ]);
-        return (await kvEntry)?.value;
-      },
-    },
-  },
-});
-
-server.registerWebHook({
-  url: "/customerLogedInEvent",
-  name: "checkout.customer.login",
-}, async (message) => {
-  console.log("customerLogedInEvent", message);
-  const promise = new Promise((_) => {});
-
-  await promise;
-});
-
-server.registerWebHook({
-  url: "/customerLogedOutEvent",
-  name: "checkout.customer.logout",
-}, async (message) => {
-  console.log("customerLogedOutEvent", message);
-  const promise = new Promise((_) => {});
-
-  await promise;
-});
-
-server.listen({
-  port: 3000,
-});

@@ -4,7 +4,7 @@ import { verify } from "../server-sdk/crypto.ts";
 export async function handleConfirmationRequest(
   request: Request,
   storage: AppServerOptions["storage"],
-) {
+): Promise<Response> {
   const bodyContent = await request.text();
   const body = JSON.parse(bodyContent) as {
     shopId?: string;
@@ -15,6 +15,7 @@ export async function handleConfirmationRequest(
   };
 
   const shopwareAppSignature = request.headers.get("shopware-shop-signature");
+
   if (
     typeof body.shopId !== "string" ||
     typeof body.apiKey !== "string" ||

@@ -3,8 +3,8 @@ import {
   ApiClientRequestFailed,
   HttpClient,
 } from "./httpClient.ts";
-import { verifyGetRequest, verifyPostRequest } from "./middleware.ts";
-import type { WebHookInvocation } from "./middleware.ts";
+
+import { verifyGetRequest, verifyPostRequest } from "./requestVerifyer.ts";
 
 import {
   createRegistationResponse,
@@ -26,9 +26,4 @@ export {
   verifyPostRequest,
 };
 
-export type {
-  AppInformation,
-  PendingRegistration,
-  ShopInfo,
-  WebHookInvocation,
-};
+export type { AppInformation, PendingRegistration, ShopInfo };
