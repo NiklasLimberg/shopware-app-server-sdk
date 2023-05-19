@@ -9,18 +9,21 @@ type WebhookEvent = {
   extensions: [];
 };
 
-import type { EntitySchema, EntityDefinition } from "./generateEntities.ts";
+import type { EntityDefinition, EntitySchema } from "./generateEntities.ts";
 import { generateEntityInterface } from "./generateEntities.ts";
 
 import ts from "npm:typescript";
 import { toPascalCase } from "./shared.ts";
 
-const transformedEntities: Map<string,  {
-  type: ts.InterfaceDeclaration,
-  name: string,
-  pascalCaseName: string,
-}> = new Map()
-const availabaleEntities: Record<string, {schemaName: string, definition: EntityDefinition }> = {}
+const transformedEntities: Map<string, {
+  type: ts.InterfaceDeclaration;
+  name: string;
+  pascalCaseName: string;
+}> = new Map();
+const availabaleEntities: Record<
+  string,
+  { schemaName: string; definition: EntityDefinition }
+> = {};
 
 function getUnknownPropertySignature(propertySymbol: ts.Identifier) {
   return ts.factory.createPropertySignature(
@@ -39,25 +42,33 @@ function generateEventInterface(event: WebhookEvent) {
     const propertySymbol = ts.factory.createIdentifier(key);
 
     if (value.type === "object") {
-      return getUnknownPropertySignature(propertySymbol)
+      return getUnknownPropertySignature(propertySymbol);
     }
 
-    if(value.type === "entity") {
-      if(!value.entityClass) {
-        console.log(`Property ${key} of ${event.name} has type entity but doesn't have an entityClass specified`)
+    if (value.type === "entity") {
+      if (!value.entityClass) {
+        console.log(
+          `Property ${key} of ${event.name} has type entity but doesn't have an entityClass specified`,
+        );
         return getUnknownPropertySignature(propertySymbol);
       }
 
-      const entityName = value.entityClass.split('\\').reverse()[0].replace('Definition', '')
+      const entityName = value.entityClass.split("\\").reverse()[0].replace(
+        "Definition",
+        "",
+      );
 
-      const entity = availabaleEntities[entityName]; 
-      if(!entity) {
+      const entity = availabaleEntities[entityName];
+      if (!entity) {
         console.log(`Entity ${entityName} is not in the entity schema`);
         return getUnknownPropertySignature(propertySymbol);
       }
 
-      if(!transformedEntities.has(entityName)) {
-        transformedEntities.set(entityName, generateEntityInterface(entity.schemaName, entity.definition, false))
+      if (!transformedEntities.has(entityName)) {
+        transformedEntities.set(
+          entityName,
+          generateEntityInterface(entity.schemaName, entity.definition, false),
+        );
       }
 
       return ts.factory.createPropertySignature(
@@ -66,7 +77,7 @@ function generateEventInterface(event: WebhookEvent) {
         undefined,
         ts.factory.createTypeReferenceNode(entityName),
       );
-    } 
+    }
 
     if (value.type === "array") {
       if (!value.of) {
@@ -96,7 +107,66 @@ function generateEventInterface(event: WebhookEvent) {
     interfaceSymbol,
     undefined,
     undefined,
-    interfaceMembers,
+    [
+      ts.factory.createPropertySignature(
+        undefined,
+        ts.factory.createIdentifier("data"),
+        undefined,
+        ts.factory.createTypeLiteralNode([
+          ts.factory.createPropertySignature(
+            undefined,
+            ts.factory.createIdentifier("payload"),
+            undefined,
+            ts.factory.createTypeLiteralNode(interfaceMembers),
+          ),
+          ts.factory.createPropertySignature(
+            undefined,
+            ts.factory.createIdentifier("event"),
+            undefined,
+            ts.factory.createLiteralTypeNode(
+              ts.factory.createStringLiteral(event.name),
+            ),
+          ),
+        ]),
+      ),
+      ts.factory.createPropertySignature(
+        undefined,
+        ts.factory.createIdentifier("source"),
+        undefined,
+        ts.factory.createTypeLiteralNode([
+          ts.factory.createPropertySignature(
+            undefined,
+            ts.factory.createIdentifier("url"),
+            undefined,
+            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+          ),
+          ts.factory.createPropertySignature(
+            undefined,
+            ts.factory.createIdentifier("eventId"),
+            undefined,
+            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+          ),
+          ts.factory.createPropertySignature(
+            undefined,
+            ts.factory.createIdentifier("appVersion"),
+            undefined,
+            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+          ),
+          ts.factory.createPropertySignature(
+            undefined,
+            ts.factory.createIdentifier("shopId"),
+            undefined,
+            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+          ),
+        ]),
+      ),
+      ts.factory.createPropertySignature(
+        undefined,
+        ts.factory.createIdentifier("timestamp"),
+        undefined,
+        ts.factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword),
+      ),
+    ],
   );
 
   return {
@@ -106,7 +176,10 @@ function generateEventInterface(event: WebhookEvent) {
   };
 }
 
-export function generateEventTypes(webHookEventsFile: string, entitySchemaPath: string) {
+export function generateEventTypes(
+  webHookEventsFile: string,
+  entitySchemaPath: string,
+) {
   const events = JSON.parse(
     Deno.readTextFileSync(webHookEventsFile),
   ) as WebhookEvent[];
@@ -118,7 +191,7 @@ export function generateEventTypes(webHookEventsFile: string, entitySchemaPath: 
   Object.entries(entitySchema).forEach(([entityName, definition]) => {
     availabaleEntities[toPascalCase(entityName)] = {
       schemaName: entityName,
-      definition
+      definition,
     };
   });
 
@@ -132,7 +205,7 @@ export function generateEventTypes(webHookEventsFile: string, entitySchemaPath: 
 
   const eventTypes = events.map((event) => generateEventInterface(event));
   const nodes = [
-    ...Array.from(transformedEntities.values()).map(value => value.type),
+    ...Array.from(transformedEntities.values()).map((value) => value.type),
     ...eventTypes.map((event) => event.type),
     ts.factory.createInterfaceDeclaration(
       [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
@@ -142,7 +215,7 @@ export function generateEventTypes(webHookEventsFile: string, entitySchemaPath: 
       eventTypes.map((event) =>
         ts.factory.createPropertySignature(
           undefined,
-          `'${event.name}'`,
+          `"${event.name}"`,
           undefined,
           ts.factory.createTypeReferenceNode(event.pascalCaseName),
         )

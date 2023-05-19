@@ -216,551 +216,1823 @@ export interface UserRecovery {
 }
 
 export interface CheckoutCustomerBeforeLogin {
-    email: string;
+    data: {
+        payload: {
+            email: string;
+        };
+        event: "checkout.customer.before.login";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutCustomerChangedPaymentMethod {
-    customer: Customer;
+    data: {
+        payload: {
+            customer: Customer;
+        };
+        event: "checkout.customer.changed-payment-method";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutCustomerDeleted {
-    customer: Customer;
+    data: {
+        payload: {
+            customer: Customer;
+        };
+        event: "checkout.customer.deleted";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutCustomerDoubleOptInGuestOrder {
-    customer: Customer;
-    confirmUrl: string;
+    data: {
+        payload: {
+            customer: Customer;
+            confirmUrl: string;
+        };
+        event: "checkout.customer.double_opt_in_guest_order";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutCustomerDoubleOptInRegistration {
-    customer: Customer;
-    confirmUrl: string;
+    data: {
+        payload: {
+            customer: Customer;
+            confirmUrl: string;
+        };
+        event: "checkout.customer.double_opt_in_registration";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutCustomerGuestRegister {
-    customer: Customer;
+    data: {
+        payload: {
+            customer: Customer;
+        };
+        event: "checkout.customer.guest_register";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutCustomerLogin {
-    customer: Customer;
-    contextToken: string;
+    data: {
+        payload: {
+            customer: Customer;
+            contextToken: string;
+        };
+        event: "checkout.customer.login";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutCustomerLogout {
-    customer: Customer;
+    data: {
+        payload: {
+            customer: Customer;
+        };
+        event: "checkout.customer.logout";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutCustomerRegister {
-    customer: Customer;
+    data: {
+        payload: {
+            customer: Customer;
+        };
+        event: "checkout.customer.register";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutOrderPaymentMethodChanged {
-    order: Order;
-    orderTransaction: OrderTransaction;
+    data: {
+        payload: {
+            order: Order;
+            orderTransaction: OrderTransaction;
+        };
+        event: "checkout.order.payment_method.changed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CheckoutOrderPlaced {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "checkout.order.placed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface ContactFormSend {
-    contactFormData: unknown;
+    data: {
+        payload: {
+            contactFormData: unknown;
+        };
+        event: "contact_form.send";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CustomerGroupRegistrationAccepted {
-    customer: Customer;
-    customerGroup: CustomerGroup;
+    data: {
+        payload: {
+            customer: Customer;
+            customerGroup: CustomerGroup;
+        };
+        event: "customer.group.registration.accepted";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CustomerGroupRegistrationDeclined {
-    customer: Customer;
-    customerGroup: CustomerGroup;
+    data: {
+        payload: {
+            customer: Customer;
+            customerGroup: CustomerGroup;
+        };
+        event: "customer.group.registration.declined";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface CustomerRecoveryRequest {
-    customerRecovery: CustomerRecovery;
-    customer: Customer;
-    resetUrl: string;
-    shopName: string;
+    data: {
+        payload: {
+            customerRecovery: CustomerRecovery;
+            customer: Customer;
+            resetUrl: string;
+            shopName: string;
+        };
+        event: "customer.recovery.request";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface MailAfterCreateMessage {
-    data: string[];
-    message: unknown;
+    data: {
+        payload: {
+            data: string[];
+            message: unknown;
+        };
+        event: "mail.after.create.message";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface MailBeforeSend {
-    data: string[];
-    templateData: string[];
+    data: {
+        payload: {
+            data: string[];
+            templateData: string[];
+        };
+        event: "mail.before.send";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface MailSent {
-    subject: string;
-    contents: string;
-    recipients: string[];
+    data: {
+        payload: {
+            subject: string;
+            contents: string;
+            recipients: string[];
+        };
+        event: "mail.sent";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface NewsletterConfirm {
-    newsletterRecipient: NewsletterRecipient;
+    data: {
+        payload: {
+            newsletterRecipient: NewsletterRecipient;
+        };
+        event: "newsletter.confirm";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface NewsletterRegister {
-    newsletterRecipient: NewsletterRecipient;
-    url: string;
+    data: {
+        payload: {
+            newsletterRecipient: NewsletterRecipient;
+            url: string;
+        };
+        event: "newsletter.register";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface NewsletterUnsubscribe {
-    newsletterRecipient: NewsletterRecipient;
+    data: {
+        payload: {
+            newsletterRecipient: NewsletterRecipient;
+        };
+        event: "newsletter.unsubscribe";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface ProductExportLog {
-    name: string;
+    data: {
+        payload: {
+            name: string;
+        };
+        event: "product_export.log";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface ReviewFormSend {
-    reviewFormData: unknown;
-    product: Product;
+    data: {
+        payload: {
+            reviewFormData: unknown;
+            product: Product;
+        };
+        event: "review_form.send";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderStateCompleted {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order.state.completed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderStateInProgress {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order.state.in_progress";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderDeliveryStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_delivery.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderDeliveryStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_delivery.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderDeliveryStateReturned {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_delivery.state.returned";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderDeliveryStateReturnedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_delivery.state.returned_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderDeliveryStateShipped {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_delivery.state.shipped";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderDeliveryStateShippedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_delivery.state.shipped_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderLineItemStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_line_item.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderLineItemStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_line_item.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderLineItemStateReturnRequested {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_line_item.state.return_requested";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderLineItemStateReturned {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_line_item.state.returned";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderLineItemStateReturnedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_line_item.state.returned_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderLineItemStateShipped {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_line_item.state.shipped";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderLineItemStateShippedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_line_item.state.shipped_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderReturnStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_return.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderReturnStateDone {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_return.state.done";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderReturnStateInProgress {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_return.state.in_progress";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderReturnStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_return.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateAuthorized {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.authorized";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateChargeback {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.chargeback";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateFailed {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.failed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateInProgress {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.in_progress";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStatePaid {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.paid";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStatePaidPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.paid_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateRefunded {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.refunded";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateRefundedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.refunded_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateReminded {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.reminded";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionStateUnconfirmed {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction.state.unconfirmed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionCaptureStateCompleted {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction_capture.state.completed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionCaptureStateFailed {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction_capture.state.failed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionCaptureStatePending {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction_capture.state.pending";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction_capture_refund.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateCompleted {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction_capture_refund.state.completed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateFailed {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction_capture_refund.state.failed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateInProgress {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction_capture_refund.state.in_progress";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateEnterOrderTransactionCaptureRefundStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_enter.order_transaction_capture_refund.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderStateCompleted {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order.state.completed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderStateInProgress {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order.state.in_progress";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderDeliveryStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_delivery.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderDeliveryStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_delivery.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderDeliveryStateReturned {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_delivery.state.returned";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderDeliveryStateReturnedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_delivery.state.returned_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderDeliveryStateShipped {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_delivery.state.shipped";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderDeliveryStateShippedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_delivery.state.shipped_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderLineItemStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_line_item.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderLineItemStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_line_item.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderLineItemStateReturnRequested {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_line_item.state.return_requested";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderLineItemStateReturned {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_line_item.state.returned";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderLineItemStateReturnedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_line_item.state.returned_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderLineItemStateShipped {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_line_item.state.shipped";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderLineItemStateShippedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_line_item.state.shipped_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderReturnStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_return.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderReturnStateDone {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_return.state.done";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderReturnStateInProgress {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_return.state.in_progress";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderReturnStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_return.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateAuthorized {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.authorized";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateChargeback {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.chargeback";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateFailed {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.failed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateInProgress {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.in_progress";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStatePaid {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.paid";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStatePaidPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.paid_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateRefunded {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.refunded";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateRefundedPartially {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.refunded_partially";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateReminded {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.reminded";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionStateUnconfirmed {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction.state.unconfirmed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionCaptureStateCompleted {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction_capture.state.completed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionCaptureStateFailed {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction_capture.state.failed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionCaptureStatePending {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction_capture.state.pending";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateCancelled {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction_capture_refund.state.cancelled";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateCompleted {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction_capture_refund.state.completed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateFailed {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction_capture_refund.state.failed";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateInProgress {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction_capture_refund.state.in_progress";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface StateLeaveOrderTransactionCaptureRefundStateOpen {
-    order: Order;
+    data: {
+        payload: {
+            order: Order;
+        };
+        event: "state_leave.order_transaction_capture_refund.state.open";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface UserRecoveryRequest {
-    userRecovery: UserRecovery;
-    resetUrl: string;
+    data: {
+        payload: {
+            userRecovery: UserRecovery;
+            resetUrl: string;
+        };
+        event: "user.recovery.request";
+    };
+    source: {
+        url: string;
+        eventId: string;
+        appVersion: string;
+        shopId: string;
+    };
+    timestamp: number;
 }
 
 export interface Events {
-    'checkout.customer.before.login': CheckoutCustomerBeforeLogin;
-    'checkout.customer.changed-payment-method': CheckoutCustomerChangedPaymentMethod;
-    'checkout.customer.deleted': CheckoutCustomerDeleted;
-    'checkout.customer.double_opt_in_guest_order': CheckoutCustomerDoubleOptInGuestOrder;
-    'checkout.customer.double_opt_in_registration': CheckoutCustomerDoubleOptInRegistration;
-    'checkout.customer.guest_register': CheckoutCustomerGuestRegister;
-    'checkout.customer.login': CheckoutCustomerLogin;
-    'checkout.customer.logout': CheckoutCustomerLogout;
-    'checkout.customer.register': CheckoutCustomerRegister;
-    'checkout.order.payment_method.changed': CheckoutOrderPaymentMethodChanged;
-    'checkout.order.placed': CheckoutOrderPlaced;
-    'contact_form.send': ContactFormSend;
-    'customer.group.registration.accepted': CustomerGroupRegistrationAccepted;
-    'customer.group.registration.declined': CustomerGroupRegistrationDeclined;
-    'customer.recovery.request': CustomerRecoveryRequest;
-    'mail.after.create.message': MailAfterCreateMessage;
-    'mail.before.send': MailBeforeSend;
-    'mail.sent': MailSent;
-    'newsletter.confirm': NewsletterConfirm;
-    'newsletter.register': NewsletterRegister;
-    'newsletter.unsubscribe': NewsletterUnsubscribe;
-    'product_export.log': ProductExportLog;
-    'review_form.send': ReviewFormSend;
-    'state_enter.order.state.cancelled': StateEnterOrderStateCancelled;
-    'state_enter.order.state.completed': StateEnterOrderStateCompleted;
-    'state_enter.order.state.in_progress': StateEnterOrderStateInProgress;
-    'state_enter.order.state.open': StateEnterOrderStateOpen;
-    'state_enter.order_delivery.state.cancelled': StateEnterOrderDeliveryStateCancelled;
-    'state_enter.order_delivery.state.open': StateEnterOrderDeliveryStateOpen;
-    'state_enter.order_delivery.state.returned': StateEnterOrderDeliveryStateReturned;
-    'state_enter.order_delivery.state.returned_partially': StateEnterOrderDeliveryStateReturnedPartially;
-    'state_enter.order_delivery.state.shipped': StateEnterOrderDeliveryStateShipped;
-    'state_enter.order_delivery.state.shipped_partially': StateEnterOrderDeliveryStateShippedPartially;
-    'state_enter.order_line_item.state.cancelled': StateEnterOrderLineItemStateCancelled;
-    'state_enter.order_line_item.state.open': StateEnterOrderLineItemStateOpen;
-    'state_enter.order_line_item.state.return_requested': StateEnterOrderLineItemStateReturnRequested;
-    'state_enter.order_line_item.state.returned': StateEnterOrderLineItemStateReturned;
-    'state_enter.order_line_item.state.returned_partially': StateEnterOrderLineItemStateReturnedPartially;
-    'state_enter.order_line_item.state.shipped': StateEnterOrderLineItemStateShipped;
-    'state_enter.order_line_item.state.shipped_partially': StateEnterOrderLineItemStateShippedPartially;
-    'state_enter.order_return.state.cancelled': StateEnterOrderReturnStateCancelled;
-    'state_enter.order_return.state.done': StateEnterOrderReturnStateDone;
-    'state_enter.order_return.state.in_progress': StateEnterOrderReturnStateInProgress;
-    'state_enter.order_return.state.open': StateEnterOrderReturnStateOpen;
-    'state_enter.order_transaction.state.authorized': StateEnterOrderTransactionStateAuthorized;
-    'state_enter.order_transaction.state.cancelled': StateEnterOrderTransactionStateCancelled;
-    'state_enter.order_transaction.state.chargeback': StateEnterOrderTransactionStateChargeback;
-    'state_enter.order_transaction.state.failed': StateEnterOrderTransactionStateFailed;
-    'state_enter.order_transaction.state.in_progress': StateEnterOrderTransactionStateInProgress;
-    'state_enter.order_transaction.state.open': StateEnterOrderTransactionStateOpen;
-    'state_enter.order_transaction.state.paid': StateEnterOrderTransactionStatePaid;
-    'state_enter.order_transaction.state.paid_partially': StateEnterOrderTransactionStatePaidPartially;
-    'state_enter.order_transaction.state.refunded': StateEnterOrderTransactionStateRefunded;
-    'state_enter.order_transaction.state.refunded_partially': StateEnterOrderTransactionStateRefundedPartially;
-    'state_enter.order_transaction.state.reminded': StateEnterOrderTransactionStateReminded;
-    'state_enter.order_transaction.state.unconfirmed': StateEnterOrderTransactionStateUnconfirmed;
-    'state_enter.order_transaction_capture.state.completed': StateEnterOrderTransactionCaptureStateCompleted;
-    'state_enter.order_transaction_capture.state.failed': StateEnterOrderTransactionCaptureStateFailed;
-    'state_enter.order_transaction_capture.state.pending': StateEnterOrderTransactionCaptureStatePending;
-    'state_enter.order_transaction_capture_refund.state.cancelled': StateEnterOrderTransactionCaptureRefundStateCancelled;
-    'state_enter.order_transaction_capture_refund.state.completed': StateEnterOrderTransactionCaptureRefundStateCompleted;
-    'state_enter.order_transaction_capture_refund.state.failed': StateEnterOrderTransactionCaptureRefundStateFailed;
-    'state_enter.order_transaction_capture_refund.state.in_progress': StateEnterOrderTransactionCaptureRefundStateInProgress;
-    'state_enter.order_transaction_capture_refund.state.open': StateEnterOrderTransactionCaptureRefundStateOpen;
-    'state_leave.order.state.cancelled': StateLeaveOrderStateCancelled;
-    'state_leave.order.state.completed': StateLeaveOrderStateCompleted;
-    'state_leave.order.state.in_progress': StateLeaveOrderStateInProgress;
-    'state_leave.order.state.open': StateLeaveOrderStateOpen;
-    'state_leave.order_delivery.state.cancelled': StateLeaveOrderDeliveryStateCancelled;
-    'state_leave.order_delivery.state.open': StateLeaveOrderDeliveryStateOpen;
-    'state_leave.order_delivery.state.returned': StateLeaveOrderDeliveryStateReturned;
-    'state_leave.order_delivery.state.returned_partially': StateLeaveOrderDeliveryStateReturnedPartially;
-    'state_leave.order_delivery.state.shipped': StateLeaveOrderDeliveryStateShipped;
-    'state_leave.order_delivery.state.shipped_partially': StateLeaveOrderDeliveryStateShippedPartially;
-    'state_leave.order_line_item.state.cancelled': StateLeaveOrderLineItemStateCancelled;
-    'state_leave.order_line_item.state.open': StateLeaveOrderLineItemStateOpen;
-    'state_leave.order_line_item.state.return_requested': StateLeaveOrderLineItemStateReturnRequested;
-    'state_leave.order_line_item.state.returned': StateLeaveOrderLineItemStateReturned;
-    'state_leave.order_line_item.state.returned_partially': StateLeaveOrderLineItemStateReturnedPartially;
-    'state_leave.order_line_item.state.shipped': StateLeaveOrderLineItemStateShipped;
-    'state_leave.order_line_item.state.shipped_partially': StateLeaveOrderLineItemStateShippedPartially;
-    'state_leave.order_return.state.cancelled': StateLeaveOrderReturnStateCancelled;
-    'state_leave.order_return.state.done': StateLeaveOrderReturnStateDone;
-    'state_leave.order_return.state.in_progress': StateLeaveOrderReturnStateInProgress;
-    'state_leave.order_return.state.open': StateLeaveOrderReturnStateOpen;
-    'state_leave.order_transaction.state.authorized': StateLeaveOrderTransactionStateAuthorized;
-    'state_leave.order_transaction.state.cancelled': StateLeaveOrderTransactionStateCancelled;
-    'state_leave.order_transaction.state.chargeback': StateLeaveOrderTransactionStateChargeback;
-    'state_leave.order_transaction.state.failed': StateLeaveOrderTransactionStateFailed;
-    'state_leave.order_transaction.state.in_progress': StateLeaveOrderTransactionStateInProgress;
-    'state_leave.order_transaction.state.open': StateLeaveOrderTransactionStateOpen;
-    'state_leave.order_transaction.state.paid': StateLeaveOrderTransactionStatePaid;
-    'state_leave.order_transaction.state.paid_partially': StateLeaveOrderTransactionStatePaidPartially;
-    'state_leave.order_transaction.state.refunded': StateLeaveOrderTransactionStateRefunded;
-    'state_leave.order_transaction.state.refunded_partially': StateLeaveOrderTransactionStateRefundedPartially;
-    'state_leave.order_transaction.state.reminded': StateLeaveOrderTransactionStateReminded;
-    'state_leave.order_transaction.state.unconfirmed': StateLeaveOrderTransactionStateUnconfirmed;
-    'state_leave.order_transaction_capture.state.completed': StateLeaveOrderTransactionCaptureStateCompleted;
-    'state_leave.order_transaction_capture.state.failed': StateLeaveOrderTransactionCaptureStateFailed;
-    'state_leave.order_transaction_capture.state.pending': StateLeaveOrderTransactionCaptureStatePending;
-    'state_leave.order_transaction_capture_refund.state.cancelled': StateLeaveOrderTransactionCaptureRefundStateCancelled;
-    'state_leave.order_transaction_capture_refund.state.completed': StateLeaveOrderTransactionCaptureRefundStateCompleted;
-    'state_leave.order_transaction_capture_refund.state.failed': StateLeaveOrderTransactionCaptureRefundStateFailed;
-    'state_leave.order_transaction_capture_refund.state.in_progress': StateLeaveOrderTransactionCaptureRefundStateInProgress;
-    'state_leave.order_transaction_capture_refund.state.open': StateLeaveOrderTransactionCaptureRefundStateOpen;
-    'user.recovery.request': UserRecoveryRequest;
+    "checkout.customer.before.login": CheckoutCustomerBeforeLogin;
+    "checkout.customer.changed-payment-method": CheckoutCustomerChangedPaymentMethod;
+    "checkout.customer.deleted": CheckoutCustomerDeleted;
+    "checkout.customer.double_opt_in_guest_order": CheckoutCustomerDoubleOptInGuestOrder;
+    "checkout.customer.double_opt_in_registration": CheckoutCustomerDoubleOptInRegistration;
+    "checkout.customer.guest_register": CheckoutCustomerGuestRegister;
+    "checkout.customer.login": CheckoutCustomerLogin;
+    "checkout.customer.logout": CheckoutCustomerLogout;
+    "checkout.customer.register": CheckoutCustomerRegister;
+    "checkout.order.payment_method.changed": CheckoutOrderPaymentMethodChanged;
+    "checkout.order.placed": CheckoutOrderPlaced;
+    "contact_form.send": ContactFormSend;
+    "customer.group.registration.accepted": CustomerGroupRegistrationAccepted;
+    "customer.group.registration.declined": CustomerGroupRegistrationDeclined;
+    "customer.recovery.request": CustomerRecoveryRequest;
+    "mail.after.create.message": MailAfterCreateMessage;
+    "mail.before.send": MailBeforeSend;
+    "mail.sent": MailSent;
+    "newsletter.confirm": NewsletterConfirm;
+    "newsletter.register": NewsletterRegister;
+    "newsletter.unsubscribe": NewsletterUnsubscribe;
+    "product_export.log": ProductExportLog;
+    "review_form.send": ReviewFormSend;
+    "state_enter.order.state.cancelled": StateEnterOrderStateCancelled;
+    "state_enter.order.state.completed": StateEnterOrderStateCompleted;
+    "state_enter.order.state.in_progress": StateEnterOrderStateInProgress;
+    "state_enter.order.state.open": StateEnterOrderStateOpen;
+    "state_enter.order_delivery.state.cancelled": StateEnterOrderDeliveryStateCancelled;
+    "state_enter.order_delivery.state.open": StateEnterOrderDeliveryStateOpen;
+    "state_enter.order_delivery.state.returned": StateEnterOrderDeliveryStateReturned;
+    "state_enter.order_delivery.state.returned_partially": StateEnterOrderDeliveryStateReturnedPartially;
+    "state_enter.order_delivery.state.shipped": StateEnterOrderDeliveryStateShipped;
+    "state_enter.order_delivery.state.shipped_partially": StateEnterOrderDeliveryStateShippedPartially;
+    "state_enter.order_line_item.state.cancelled": StateEnterOrderLineItemStateCancelled;
+    "state_enter.order_line_item.state.open": StateEnterOrderLineItemStateOpen;
+    "state_enter.order_line_item.state.return_requested": StateEnterOrderLineItemStateReturnRequested;
+    "state_enter.order_line_item.state.returned": StateEnterOrderLineItemStateReturned;
+    "state_enter.order_line_item.state.returned_partially": StateEnterOrderLineItemStateReturnedPartially;
+    "state_enter.order_line_item.state.shipped": StateEnterOrderLineItemStateShipped;
+    "state_enter.order_line_item.state.shipped_partially": StateEnterOrderLineItemStateShippedPartially;
+    "state_enter.order_return.state.cancelled": StateEnterOrderReturnStateCancelled;
+    "state_enter.order_return.state.done": StateEnterOrderReturnStateDone;
+    "state_enter.order_return.state.in_progress": StateEnterOrderReturnStateInProgress;
+    "state_enter.order_return.state.open": StateEnterOrderReturnStateOpen;
+    "state_enter.order_transaction.state.authorized": StateEnterOrderTransactionStateAuthorized;
+    "state_enter.order_transaction.state.cancelled": StateEnterOrderTransactionStateCancelled;
+    "state_enter.order_transaction.state.chargeback": StateEnterOrderTransactionStateChargeback;
+    "state_enter.order_transaction.state.failed": StateEnterOrderTransactionStateFailed;
+    "state_enter.order_transaction.state.in_progress": StateEnterOrderTransactionStateInProgress;
+    "state_enter.order_transaction.state.open": StateEnterOrderTransactionStateOpen;
+    "state_enter.order_transaction.state.paid": StateEnterOrderTransactionStatePaid;
+    "state_enter.order_transaction.state.paid_partially": StateEnterOrderTransactionStatePaidPartially;
+    "state_enter.order_transaction.state.refunded": StateEnterOrderTransactionStateRefunded;
+    "state_enter.order_transaction.state.refunded_partially": StateEnterOrderTransactionStateRefundedPartially;
+    "state_enter.order_transaction.state.reminded": StateEnterOrderTransactionStateReminded;
+    "state_enter.order_transaction.state.unconfirmed": StateEnterOrderTransactionStateUnconfirmed;
+    "state_enter.order_transaction_capture.state.completed": StateEnterOrderTransactionCaptureStateCompleted;
+    "state_enter.order_transaction_capture.state.failed": StateEnterOrderTransactionCaptureStateFailed;
+    "state_enter.order_transaction_capture.state.pending": StateEnterOrderTransactionCaptureStatePending;
+    "state_enter.order_transaction_capture_refund.state.cancelled": StateEnterOrderTransactionCaptureRefundStateCancelled;
+    "state_enter.order_transaction_capture_refund.state.completed": StateEnterOrderTransactionCaptureRefundStateCompleted;
+    "state_enter.order_transaction_capture_refund.state.failed": StateEnterOrderTransactionCaptureRefundStateFailed;
+    "state_enter.order_transaction_capture_refund.state.in_progress": StateEnterOrderTransactionCaptureRefundStateInProgress;
+    "state_enter.order_transaction_capture_refund.state.open": StateEnterOrderTransactionCaptureRefundStateOpen;
+    "state_leave.order.state.cancelled": StateLeaveOrderStateCancelled;
+    "state_leave.order.state.completed": StateLeaveOrderStateCompleted;
+    "state_leave.order.state.in_progress": StateLeaveOrderStateInProgress;
+    "state_leave.order.state.open": StateLeaveOrderStateOpen;
+    "state_leave.order_delivery.state.cancelled": StateLeaveOrderDeliveryStateCancelled;
+    "state_leave.order_delivery.state.open": StateLeaveOrderDeliveryStateOpen;
+    "state_leave.order_delivery.state.returned": StateLeaveOrderDeliveryStateReturned;
+    "state_leave.order_delivery.state.returned_partially": StateLeaveOrderDeliveryStateReturnedPartially;
+    "state_leave.order_delivery.state.shipped": StateLeaveOrderDeliveryStateShipped;
+    "state_leave.order_delivery.state.shipped_partially": StateLeaveOrderDeliveryStateShippedPartially;
+    "state_leave.order_line_item.state.cancelled": StateLeaveOrderLineItemStateCancelled;
+    "state_leave.order_line_item.state.open": StateLeaveOrderLineItemStateOpen;
+    "state_leave.order_line_item.state.return_requested": StateLeaveOrderLineItemStateReturnRequested;
+    "state_leave.order_line_item.state.returned": StateLeaveOrderLineItemStateReturned;
+    "state_leave.order_line_item.state.returned_partially": StateLeaveOrderLineItemStateReturnedPartially;
+    "state_leave.order_line_item.state.shipped": StateLeaveOrderLineItemStateShipped;
+    "state_leave.order_line_item.state.shipped_partially": StateLeaveOrderLineItemStateShippedPartially;
+    "state_leave.order_return.state.cancelled": StateLeaveOrderReturnStateCancelled;
+    "state_leave.order_return.state.done": StateLeaveOrderReturnStateDone;
+    "state_leave.order_return.state.in_progress": StateLeaveOrderReturnStateInProgress;
+    "state_leave.order_return.state.open": StateLeaveOrderReturnStateOpen;
+    "state_leave.order_transaction.state.authorized": StateLeaveOrderTransactionStateAuthorized;
+    "state_leave.order_transaction.state.cancelled": StateLeaveOrderTransactionStateCancelled;
+    "state_leave.order_transaction.state.chargeback": StateLeaveOrderTransactionStateChargeback;
+    "state_leave.order_transaction.state.failed": StateLeaveOrderTransactionStateFailed;
+    "state_leave.order_transaction.state.in_progress": StateLeaveOrderTransactionStateInProgress;
+    "state_leave.order_transaction.state.open": StateLeaveOrderTransactionStateOpen;
+    "state_leave.order_transaction.state.paid": StateLeaveOrderTransactionStatePaid;
+    "state_leave.order_transaction.state.paid_partially": StateLeaveOrderTransactionStatePaidPartially;
+    "state_leave.order_transaction.state.refunded": StateLeaveOrderTransactionStateRefunded;
+    "state_leave.order_transaction.state.refunded_partially": StateLeaveOrderTransactionStateRefundedPartially;
+    "state_leave.order_transaction.state.reminded": StateLeaveOrderTransactionStateReminded;
+    "state_leave.order_transaction.state.unconfirmed": StateLeaveOrderTransactionStateUnconfirmed;
+    "state_leave.order_transaction_capture.state.completed": StateLeaveOrderTransactionCaptureStateCompleted;
+    "state_leave.order_transaction_capture.state.failed": StateLeaveOrderTransactionCaptureStateFailed;
+    "state_leave.order_transaction_capture.state.pending": StateLeaveOrderTransactionCaptureStatePending;
+    "state_leave.order_transaction_capture_refund.state.cancelled": StateLeaveOrderTransactionCaptureRefundStateCancelled;
+    "state_leave.order_transaction_capture_refund.state.completed": StateLeaveOrderTransactionCaptureRefundStateCompleted;
+    "state_leave.order_transaction_capture_refund.state.failed": StateLeaveOrderTransactionCaptureRefundStateFailed;
+    "state_leave.order_transaction_capture_refund.state.in_progress": StateLeaveOrderTransactionCaptureRefundStateInProgress;
+    "state_leave.order_transaction_capture_refund.state.open": StateLeaveOrderTransactionCaptureRefundStateOpen;
+    "user.recovery.request": UserRecoveryRequest;
 }
 
