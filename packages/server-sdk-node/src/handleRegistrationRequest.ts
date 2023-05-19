@@ -1,9 +1,9 @@
 import {
   createRegistationResponse,
   createRegistration,
-} from "../server-sdk/registration.ts";
+} from "./registration.ts";
 
-import { AppServerOptions } from "../server-sdk/types.d.ts";
+import { AppServerOptions } from "../../types/global.d.ts";
 
 export async function handleRegistrationRequest(
   request: Request,

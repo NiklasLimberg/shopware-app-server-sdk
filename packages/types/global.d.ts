@@ -1,8 +1,8 @@
-import type { Events } from "../types/webhooks.d.ts";
+import type { Events } from "./webhooks.js";
 
 type MaybePromise<T> = T | Promise<T>;
 
-type Callback<T extends keyof Events> = (
+export type Callback<T extends keyof Events> = (
   message: Events[T],
   shop: Shop,
 ) => MaybePromise<void | unknown>;
