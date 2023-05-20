@@ -1,4 +1,4 @@
-import type { Events } from "./webhooks.js";
+import type { Events } from "../types/webhooks.d.ts";
 
 type MaybePromise<T> = T | Promise<T>;
 

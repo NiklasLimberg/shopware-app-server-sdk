@@ -1,7 +1,10 @@
-import { AppServer } from "../../npm/src/server-sdk-deno/mod.js";
+import { serve } from "@hono/node-server";
+import { Hono } from "hono";
+
+import { AppServer } from "server-sdk-node";
 import { JSONStorage } from "node-localstorage";
 
-const localstorage = new JSONStorage('./storage')
+const localstorage = new JSONStorage("./storage");
 
 const server = new AppServer({
   appConfig: {
@@ -13,11 +16,9 @@ const server = new AppServer({
   },
   storage: {
     shopRegistration: {
-      set: (shop) => localstorage.setItem(`shopRegistration/${shop.shopId}`, shop),
-      get: async (id) => {
-        const kvEntry = await localstorage.getItem(`shopRegistration/${id}`);
-        return kvEntry?.value;
-      },
+      set: (shop) =>
+        localstorage.setItem(`shopRegistration/${shop.shopId}`, shop),
+      get: (id) => localstorage.getItem(`shopRegistration/${id}`),
     },
     pendingRegistration: {
       set: (pendingRegistration) =>
@@ -25,10 +26,7 @@ const server = new AppServer({
           `pendingRegistration/${pendingRegistration.shopId}`,
           pendingRegistration,
         ),
-      get: async (id) => {
-        const kvEntry = kv.getItem(`pendingRegistration/${id}`);
-        return kvEntry?.value;
-      },
+      get: (id) => localstorage.getItem(`pendingRegistration/${id}`),
     },
   },
 });
@@ -53,7 +51,15 @@ server.registerWebHook({
   return promise;
 });
 
-server.listen({
-  port: 3000,
-});
+const app = new Hono();
 
+app.all("*", async (context) => {
+  console.log("AAAAAAAAAAAAAAAAAAAAAAA");
+  const response = await server.handle(context.req.raw);
+
+  return response ? response : new Response("Not Found", { status: 404 });
+}, {});
+
+serve(app, (info) => {
+  console.log(`Listening on ${info.address}:${info.port}`);
+});

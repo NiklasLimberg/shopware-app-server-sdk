@@ -2,7 +2,7 @@
   "name": "shopware-app-server-sdk-node",
   "version": "1.0.0",
   "description": "An example implementation with node",
-  "main": "index.cjs",
+  "main": "index.mjs",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hono/node-server": "^1.0.0",
+    "hono": "^3.2.1",
     "node-localstorage": "^2.2.1"
   },
   "devDependencies": {

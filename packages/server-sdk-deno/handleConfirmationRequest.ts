@@ -1,5 +1,5 @@
 import type { AppServerOptions } from "./types.d.ts";
-import { verify } from "../server-sdk/crypto.ts";
+import { verify } from "./crypto.ts";
 
 export async function handleConfirmationRequest(
   request: Request,

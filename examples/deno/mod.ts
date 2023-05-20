@@ -59,6 +59,15 @@ server.registerWebHook({
   return promise;
 });
 
-server.listen({
-  port: 3000,
-});
+const conn = Deno.listen({ port: 3000 });
+const httpConn = Deno.serveHttp(await conn.accept());
+
+for await (const httpEvent of httpConn) {
+  const response = await server.handle(httpEvent.request);
+
+  httpEvent.respondWith(
+    response ?? new Response("Not found", {
+      status: 404,
+    }),
+  );
+}

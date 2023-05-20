@@ -1,5 +1,3 @@
-import { ServeInit, serve } from "https://deno.land/std@0.188.0/http/server.ts";
-
 import type { Events } from "../types/webhooks.d.ts";
 import type { AppServerOptions, Callback, WebhookListener } from "./types.d.ts";
 
@@ -113,19 +111,5 @@ export class AppServer {
     return hasErrors
       ? new Response("Internal Server Error", { status: 500 })
       : new Response("", { status: 200 });
-  }
-
-  async listen(options: Deno.TcpListenOptions) {
-    const conn = Deno.listen(options);
-    const httpConn = Deno.serveHttp(await conn.accept());
-    for await (const httpEvent of httpConn) {
-      const response = await this.handle(httpEvent.request);
-
-      httpEvent.respondWith(
-        response ?? new Response("Not found", {
-          status: 404,
-        }),
-      );
-    }
   }
 }

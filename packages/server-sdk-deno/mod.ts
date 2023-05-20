@@ -19,9 +19,9 @@ import type {
 } from "./registration.ts";
 
 export {
-  AppServer,
   ApiClientAuthenticationFailed,
   ApiClientRequestFailed,
+  AppServer,
   createRegistationResponse,
   createRegistration,
   HttpClient,
@@ -30,4 +30,3 @@ export {
 };
 
 export type { AppInformation, PendingRegistration, ShopInfo };
-
