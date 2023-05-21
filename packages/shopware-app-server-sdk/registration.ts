@@ -45,7 +45,7 @@ export async function createRegistration(
   };
 }
 
-export async function createRegistationResponse(
+export async function createRegistrationResponse(
   { shopId, shopSecret, shopUrl }: PendingRegistration,
   { authorizeCallbackUrl, appName, appSecret }: AppInformation,
 ) {

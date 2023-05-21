@@ -6,7 +6,7 @@ type WebHookInvocation = {
 };
 
 /**
- * Validates wheter POST webhook was triggered by a given shop
+ * Validates whether a POST webhook was triggered by a given shop
  * @param webHookInvocation - Information about the shop that triggered the webhook
  * @param webHookInvocation.shopSignature - The signature of the shop can be found in the "shopware-shop-signature" header
  * @param webHookInvocation.webHookBody the raw webhook body
@@ -24,7 +24,7 @@ export function verifyPostRequest(
 }
 
 /**
- * Validates wheter GET webhook was triggered by a given shop
+ * Validates whether a GET webhook was triggered by a given shop
  * @param searchParams the complete searchParams passed to the webhook
  * @param shopSecret the shop secret. The shop can be identified by the "shop-id" query parameter
  */

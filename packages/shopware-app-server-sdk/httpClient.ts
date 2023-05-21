@@ -46,7 +46,7 @@ export class HttpClient {
       typeof authBody?.expires_in !== "number"
     ) {
       throw new Error(
-        `Shop ${this.shop.shopId} returned an invalid oauth reponse`,
+        `Shop ${this.shop.shopId} returned an invalid oauth response`,
       );
     }
 

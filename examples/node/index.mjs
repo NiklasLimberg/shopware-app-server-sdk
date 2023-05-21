@@ -32,20 +32,20 @@ const server = new AppServer({
 });
 
 server.registerWebHook({
-  url: "/customerLogedInEvent",
+  url: "/customerLoggedInEvent",
   name: "checkout.customer.login",
 }, async (message) => {
-  console.log("customerLogedInEvent", message);
+  console.log("customerLoggedInEvent", message);
   const promise = new Promise((_) => {});
 
   await promise;
 });
 
 server.registerWebHook({
-  url: "/customerLogedOutEvent",
+  url: "/customerLoggedOutEvent",
   name: "checkout.customer.logout",
 }, (message) => {
-  console.log("customerLogedOutEvent", message.data.payload);
+  console.log("customerLoggedOutEvent", message.data.payload);
   const promise = new Promise((_) => {});
 
   return promise;
@@ -54,10 +54,13 @@ server.registerWebHook({
 const app = new Hono();
 
 app.all("*", async (context) => {
-  console.log("AAAAAAAAAAAAAAAAAAAAAAA");
   const response = await server.handle(context.req.raw);
 
-  return response ? response : new Response("Not Found", { status: 404 });
+  if( response) {
+    return response;
+  }
+
+  return new Response("Not Found", { status: 404 });
 }, {});
 
 serve(app, (info) => {

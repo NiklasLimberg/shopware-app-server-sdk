@@ -1,8 +1,8 @@
-import { AppServer } from "../../packages/server-sdk-deno/mod.ts";
+import { AppServer } from "../../packages/shopware-app-server-sdk/mod.ts";
 import type {
   PendingRegistration,
   Shop,
-} from "../../packages/server-sdk-deno/types.d.ts";
+} from "../../packages/shopware-app-server-sdk/types.d.ts";
 
 const kv = await Deno.openKv();
 
@@ -40,20 +40,20 @@ const server = new AppServer({
 });
 
 server.registerWebHook({
-  url: "/customerLogedInEvent",
+  url: "/customerLoggedInEvent",
   name: "checkout.customer.login",
 }, async (message) => {
-  console.log("customerLogedInEvent", message);
+  console.log("customerLoggedInEvent", message);
   const promise = new Promise((_) => {});
 
   await promise;
 });
 
 server.registerWebHook({
-  url: "/customerLogedOutEvent",
+  url: "/customerLoggedOutEvent",
   name: "checkout.customer.logout",
 }, (message) => {
-  console.log("customerLogedOutEvent", message.data.payload);
+  console.log("customerLoggedOutEvent", message.data.payload);
   const promise = new Promise((_) => {});
 
   return promise;

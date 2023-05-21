@@ -5,7 +5,7 @@ function bufferToHex(buf: ArrayBuffer) {
   const intArray = new Uint8Array(buf);
 
   return intArray.reduce(
-    (accumaltor, x) => (accumaltor + ("00" + x.toString(16)).slice(-2)),
+    (accumulator, x) => (accumulator + ("00" + x.toString(16)).slice(-2)),
     "",
   );
 }

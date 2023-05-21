@@ -1,5 +1,5 @@
 import {
-  createRegistationResponse,
+  createRegistrationResponse,
   createRegistration,
 } from "./registration.ts";
 
@@ -13,15 +13,15 @@ export async function handleRegistrationRequest(
 ): Promise<Response> {
   const searchParams = new URL(request.url).searchParams;
 
-  const registrationParamter = ["shop-id", "shop-url", "timestamp"].map(
-    (paramter) => searchParams.get(paramter) ?? "",
+  const registrationParameters = ["shop-id", "shop-url", "timestamp"].map(
+    (parameter) => searchParams.get(parameter) ?? "",
   ).filter((val) => val.length);
 
-  if (registrationParamter.length != 3) {
+  if (registrationParameters.length != 3) {
     return new Response("Missing request parameters", { status: 400 });
   }
 
-  const [shopId, shopUrl, timestamp] = registrationParamter;
+  const [shopId, shopUrl, timestamp] = registrationParameters;
 
   const shopwareAppSignature = request.headers.get(
     "shopware-app-signature",
@@ -57,7 +57,7 @@ export async function handleRegistrationRequest(
 
   pendingRegistrationStorage.set(pendingRegistration);
 
-  const registrationResponse = await createRegistationResponse(
+  const registrationResponse = await createRegistrationResponse(
     pendingRegistration,
     {
       authorizeCallbackUrl: appConfig.appBaseUrl + appConfig.confirmationUrl,

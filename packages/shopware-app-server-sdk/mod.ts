@@ -6,10 +6,10 @@ import {
   HttpClient,
 } from "./httpClient.ts";
 
-import { verifyGetRequest, verifyPostRequest } from "./requestVerifyer.ts";
+import { verifyGetRequest, verifyPostRequest } from "./requestVerifiers.ts";
 
 import {
-  createRegistationResponse,
+  createRegistrationResponse,
   createRegistration,
 } from "./registration.ts";
 import type {
@@ -22,7 +22,7 @@ export {
   ApiClientAuthenticationFailed,
   ApiClientRequestFailed,
   AppServer,
-  createRegistationResponse,
+  createRegistrationResponse,
   createRegistration,
   HttpClient,
   verifyGetRequest,

@@ -1,4 +1,9 @@
 {
   "deno.enablePaths": ["./examples/deno", "./generators", "./packages"],
   "deno.unstable": true,
+  "cSpell.words": [
+    "hono",
+    "localstorage",
+    "shopware"
+  ],
 }
