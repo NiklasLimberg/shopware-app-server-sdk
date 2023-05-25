@@ -12,7 +12,12 @@ type WebhookEvent = {
 import type { EntityDefinition, EntitySchema } from "./generateEntities.ts";
 import { generateEntityInterface } from "./generateEntities.ts";
 
+
+
 import ts from "npm:typescript";
+const factory = ts.factory;
+
+
 import { toPascalCase } from "./shared.ts";
 
 const transformedEntities: Map<string, {
@@ -20,26 +25,26 @@ const transformedEntities: Map<string, {
   name: string;
   pascalCaseName: string;
 }> = new Map();
-const availabaleEntities: Record<
+const availableEntities: Record<
   string,
   { schemaName: string; definition: EntityDefinition }
 > = {};
 
 function getUnknownPropertySignature(propertySymbol: ts.Identifier) {
-  return ts.factory.createPropertySignature(
+  return factory.createTypeLiteralNode([factory.createPropertySignature(
     undefined,
     propertySymbol,
     undefined,
-    ts.factory.createTypeReferenceNode("unknown"),
-  );
+    factory.createTypeReferenceNode("unknown"),
+  )]);
 }
 
 function generateEventInterface(event: WebhookEvent) {
   const pascalCaseName = toPascalCase(event.name);
-  const interfaceSymbol = ts.factory.createIdentifier(pascalCaseName);
+  const interfaceSymbol = factory.createIdentifier(pascalCaseName);
 
   const interfaceMembers = Object.entries(event.data).map(([key, value]) => {
-    const propertySymbol = ts.factory.createIdentifier(key);
+    const propertySymbol = factory.createIdentifier(key);
 
     if (value.type === "object") {
       return getUnknownPropertySignature(propertySymbol);
@@ -58,7 +63,7 @@ function generateEventInterface(event: WebhookEvent) {
         "",
       );
 
-      const entity = availabaleEntities[entityName];
+      const entity = availableEntities[entityName];
       if (!entity) {
         console.log(`Entity ${entityName} is not in the entity schema`);
         return getUnknownPropertySignature(propertySymbol);
@@ -71,12 +76,40 @@ function generateEventInterface(event: WebhookEvent) {
         );
       }
 
-      return ts.factory.createPropertySignature(
-        undefined,
-        propertySymbol,
-        undefined,
-        ts.factory.createTypeReferenceNode(entityName),
-      );
+      return factory.createTypeLiteralNode([
+        factory.createPropertySignature(
+          undefined,
+          factory.createIdentifier("entity"),
+          undefined,
+          factory.createLiteralTypeNode(factory.createStringLiteral(entityName))
+        ),
+        factory.createPropertySignature(
+          undefined,
+          factory.createIdentifier("operation"),
+          undefined,
+          factory.createUnionTypeNode([
+            factory.createLiteralTypeNode(factory.createStringLiteral("create")),
+            factory.createLiteralTypeNode(factory.createStringLiteral("read")),
+            factory.createLiteralTypeNode(factory.createStringLiteral("update")),
+            factory.createLiteralTypeNode(factory.createStringLiteral("delete"))
+          ])
+        ),
+        factory.createPropertySignature(
+          undefined,
+          factory.createIdentifier("primaryKey"),
+          undefined,
+          factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword)
+        ),
+        factory.createPropertySignature(
+          undefined,
+          factory.createIdentifier("updatedFields"),
+          undefined,
+          factory.createTypeReferenceNode(
+            factory.createIdentifier("CustomerRecovery"),
+            undefined
+          )
+        )
+      ])
     }
 
     if (value.type === "array") {
@@ -86,85 +119,85 @@ function generateEventInterface(event: WebhookEvent) {
         );
       }
 
-      return ts.factory.createPropertySignature(
+      return factory.createTypeLiteralNode([ factory.createPropertySignature(
         undefined,
         propertySymbol,
         undefined,
-        ts.factory.createTypeReferenceNode(`${value.of.type}[]`),
-      );
+        factory.createTypeReferenceNode(`${value.of.type}[]`),
+      )]);
     }
 
-    return ts.factory.createPropertySignature(
+    return factory.createTypeLiteralNode([factory.createPropertySignature(
       undefined,
       propertySymbol,
       undefined,
-      ts.factory.createTypeReferenceNode(value.type),
-    );
+      factory.createTypeReferenceNode(value.type),
+    )]);
   });
 
-  const messageType = ts.factory.createInterfaceDeclaration(
-    [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
+  const messageType = factory.createInterfaceDeclaration(
+    [factory.createToken(ts.SyntaxKind.ExportKeyword)],
     interfaceSymbol,
     undefined,
     undefined,
     [
-      ts.factory.createPropertySignature(
+      factory.createPropertySignature(
         undefined,
-        ts.factory.createIdentifier("data"),
+        factory.createIdentifier("data"),
         undefined,
-        ts.factory.createTypeLiteralNode([
-          ts.factory.createPropertySignature(
+        factory.createTypeLiteralNode([
+          factory.createPropertySignature(
             undefined,
-            ts.factory.createIdentifier("payload"),
+            factory.createIdentifier("payload"),
             undefined,
-            ts.factory.createTypeLiteralNode(interfaceMembers),
+            interfaceMembers,
           ),
-          ts.factory.createPropertySignature(
+          factory.createPropertySignature(
             undefined,
-            ts.factory.createIdentifier("event"),
+            factory.createIdentifier("event"),
             undefined,
-            ts.factory.createLiteralTypeNode(
-              ts.factory.createStringLiteral(event.name),
+            factory.createLiteralTypeNode(
+              factory.createStringLiteral(event.name),
             ),
           ),
         ]),
       ),
-      ts.factory.createPropertySignature(
+      factory.createPropertySignature(
         undefined,
-        ts.factory.createIdentifier("source"),
+        factory.createIdentifier("source"),
         undefined,
-        ts.factory.createTypeLiteralNode([
-          ts.factory.createPropertySignature(
+        factory.createTypeLiteralNode([
+          factory.createPropertySignature(
             undefined,
-            ts.factory.createIdentifier("url"),
+            factory.createIdentifier("url"),
             undefined,
-            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+            factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
           ),
-          ts.factory.createPropertySignature(
+          factory.createPropertySignature(
             undefined,
-            ts.factory.createIdentifier("eventId"),
+            factory.createIdentifier("eventId"),
             undefined,
-            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+            factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
           ),
-          ts.factory.createPropertySignature(
+          factory.createPropertySignature(
             undefined,
-            ts.factory.createIdentifier("appVersion"),
+            factory.createIdentifier("appVersion"),
             undefined,
-            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+            factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
           ),
-          ts.factory.createPropertySignature(
+          factory.createPropertySignature(
             undefined,
-            ts.factory.createIdentifier("shopId"),
+            factory.createIdentifier("shopId"),
             undefined,
-            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+            factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
           ),
         ]),
       ),
-      ts.factory.createPropertySignature(
+      factory.createPropertySignature(
         undefined,
-        ts.factory.createIdentifier("timestamp"),
+        factory.createIdentifier("timestamp"),
         undefined,
-        ts.factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword),
+        factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword),
       ),
     ],
   );
@@ -189,7 +222,7 @@ export function generateEventTypes(
   ) as EntitySchema;
 
   Object.entries(entitySchema).forEach(([entityName, definition]) => {
-    availabaleEntities[toPascalCase(entityName)] = {
+    availableEntities[toPascalCase(entityName)] = {
       schemaName: entityName,
       definition,
     };
@@ -207,27 +240,27 @@ export function generateEventTypes(
   const nodes = [
     ...Array.from(transformedEntities.values()).map((value) => value.type),
     ...eventTypes.map((event) => event.type),
-    ts.factory.createInterfaceDeclaration(
-      [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
+    factory.createInterfaceDeclaration(
+      [factory.createToken(ts.SyntaxKind.ExportKeyword)],
       "Events",
       undefined,
       undefined,
       eventTypes.map((event) =>
-        ts.factory.createPropertySignature(
+        factory.createPropertySignature(
           undefined,
           `"${event.name}"`,
           undefined,
-          ts.factory.createTypeReferenceNode(event.pascalCaseName),
+          factory.createTypeReferenceNode(event.pascalCaseName),
         )
       ),
     ),
-  ].flatMap((value) => [value, ts.factory.createIdentifier("\n")]);
+  ].flatMap((value) => [value, factory.createIdentifier("\n")]);
 
   const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
 
   return printer.printList(
     ts.ListFormat.MultiLine,
-    ts.factory.createNodeArray(
+    factory.createNodeArray(
       nodes,
     ),
     sourceFile,
