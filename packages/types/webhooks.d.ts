@@ -1,225 +1,6 @@
-export interface Customer {
-    id: string;
-    groupId: string;
-    defaultPaymentMethodId: string;
-    salesChannelId: string;
-    languageId: string;
-    lastPaymentMethodId: string;
-    defaultBillingAddressId: string;
-    defaultShippingAddressId: string;
-    autoIncrement: number;
-    customerNumber: string;
-    salutationId: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-    email: string;
-    title: string;
-    vatIds: Array<unknown>;
-    affiliateCode: string;
-    campaignCode: string;
-    active: boolean;
-    doubleOptInRegistration: boolean;
-    doubleOptInEmailSentDate: string;
-    doubleOptInConfirmDate: string;
-    hash: string;
-    guest: boolean;
-    firstLogin: string;
-    lastLogin: string;
-    newsletterSalesChannelIds: unknown;
-    birthday: string;
-    lastOrderDate: string;
-    orderCount: number;
-    orderTotalAmount: number;
-    reviewCount: number;
-    customFields: unknown;
-    legacyPassword: string;
-    legacyEncoder: string;
-    remoteAddress: unknown;
-    tagIds: Array<unknown>;
-    requestedGroupId: string;
-    boundSalesChannelId: string;
-    accountType: string;
-    createdById: string;
-    updatedById: string;
-    createdAt: string;
-    updatedAt: string;
-}
-
-export interface Order {
-    id: string;
-    versionId: string;
-    autoIncrement: number;
-    orderNumber: string;
-    billingAddressId: string;
-    billingAddressVersionId: string;
-    currencyId: string;
-    languageId: string;
-    salesChannelId: string;
-    orderDateTime: string;
-    orderDate: string;
-    price: unknown;
-    amountTotal: number;
-    amountNet: number;
-    positionPrice: number;
-    taxStatus: string;
-    shippingCosts: unknown;
-    shippingTotal: number;
-    currencyFactor: number;
-    deepLinkCode: string;
-    affiliateCode: string;
-    campaignCode: string;
-    customerComment: string;
-    stateId: string;
-    ruleIds: Array<unknown>;
-    customFields: unknown;
-    createdById: string;
-    updatedById: string;
-    itemRounding: unknown;
-    totalRounding: unknown;
-    createdAt: string;
-    updatedAt: string;
-}
-
-export interface OrderTransaction {
-    id: string;
-    versionId: string;
-    orderId: string;
-    orderVersionId: string;
-    paymentMethodId: string;
-    amount: unknown;
-    stateId: string;
-    customFields: unknown;
-    createdAt: string;
-    updatedAt: string;
-}
-
-export interface CustomerGroup {
-    id: string;
-    name: string;
-    displayGross: boolean;
-    customFields: unknown;
-    registrationActive: boolean;
-    registrationTitle: string;
-    registrationIntroduction: string;
-    registrationOnlyCompanyRegistration: boolean;
-    registrationSeoMetaDescription: string;
-    createdAt: string;
-    updatedAt: string;
-    translated: {name?: string, customFields?: unknown, registrationTitle?: string, registrationIntroduction?: string, registrationOnlyCompanyRegistration?: boolean, registrationSeoMetaDescription?: string};
-}
-
-export interface CustomerRecovery {
-    id: string;
-    hash: string;
-    customerId: string;
-    createdAt: string;
-    updatedAt: string;
-}
-
-export interface NewsletterRecipient {
-    id: string;
-    email: string;
-    title: string;
-    firstName: string;
-    lastName: string;
-    zipCode: string;
-    city: string;
-    street: string;
-    status: string;
-    hash: string;
-    customFields: unknown;
-    confirmedAt: string;
-    salutationId: string;
-    languageId: string;
-    salesChannelId: string;
-    createdAt: string;
-    updatedAt: string;
-}
-
-export interface Product {
-    id: string;
-    versionId: string;
-    parentId: string;
-    parentVersionId: string;
-    manufacturerId: string;
-    productManufacturerVersionId: string;
-    unitId: string;
-    taxId: string;
-    coverId: string;
-    productMediaVersionId: string;
-    deliveryTimeId: string;
-    featureSetId: string;
-    canonicalProductId: string;
-    cmsPageId: string;
-    cmsPageVersionId: string;
-    price: unknown;
-    productNumber: string;
-    stock: number;
-    restockTime: number;
-    autoIncrement: number;
-    active: boolean;
-    availableStock: number;
-    available: boolean;
-    isCloseout: boolean;
-    variation: Array<unknown>;
-    displayGroup: string;
-    variantListingConfig: unknown;
-    variantRestrictions: unknown;
-    manufacturerNumber: string;
-    ean: string;
-    purchaseSteps: number;
-    maxPurchase: number;
-    minPurchase: number;
-    purchaseUnit: number;
-    referenceUnit: number;
-    shippingFree: boolean;
-    purchasePrices: unknown;
-    markAsTopseller: boolean;
-    weight: number;
-    width: number;
-    height: number;
-    length: number;
-    releaseDate: string;
-    ratingAverage: number;
-    categoryTree: Array<unknown>;
-    propertyIds: Array<unknown>;
-    optionIds: Array<unknown>;
-    streamIds: Array<unknown>;
-    tagIds: Array<unknown>;
-    categoryIds: Array<unknown>;
-    childCount: number;
-    customFieldSetSelectionActive: boolean;
-    sales: number;
-    states: Array<unknown>;
-    metaDescription: string;
-    name: string;
-    keywords: string;
-    description: string;
-    metaTitle: string;
-    packUnit: string;
-    packUnitPlural: string;
-    customFields: unknown;
-    slotConfig: unknown;
-    customSearchKeywords: Array<unknown>;
-    createdAt: string;
-    updatedAt: string;
-    translated: {metaDescription?: string, name?: string, keywords?: string, description?: string, metaTitle?: string, packUnit?: string, packUnitPlural?: string, customFields?: unknown, slotConfig?: unknown, customSearchKeywords?: Array<unknown>};
-}
-
-export interface UserRecovery {
-    id: string;
-    hash: string;
-    userId: string;
-    createdAt: string;
-    updatedAt: string;
-}
-
 export interface CheckoutCustomerBeforeLogin {
     data: {
-        payload: {
-            email: string;
-        };
+        payload: unknown;
         event: "checkout.customer.before.login";
     };
     source: {
@@ -233,9 +14,7 @@ export interface CheckoutCustomerBeforeLogin {
 
 export interface CheckoutCustomerChangedPaymentMethod {
     data: {
-        payload: {
-            customer: Customer;
-        };
+        payload: unknown;
         event: "checkout.customer.changed-payment-method";
     };
     source: {
@@ -249,9 +28,7 @@ export interface CheckoutCustomerChangedPaymentMethod {
 
 export interface CheckoutCustomerDeleted {
     data: {
-        payload: {
-            customer: Customer;
-        };
+        payload: unknown;
         event: "checkout.customer.deleted";
     };
     source: {
@@ -265,10 +42,7 @@ export interface CheckoutCustomerDeleted {
 
 export interface CheckoutCustomerDoubleOptInGuestOrder {
     data: {
-        payload: {
-            customer: Customer;
-            confirmUrl: string;
-        };
+        payload: unknown;
         event: "checkout.customer.double_opt_in_guest_order";
     };
     source: {
@@ -282,10 +56,7 @@ export interface CheckoutCustomerDoubleOptInGuestOrder {
 
 export interface CheckoutCustomerDoubleOptInRegistration {
     data: {
-        payload: {
-            customer: Customer;
-            confirmUrl: string;
-        };
+        payload: unknown;
         event: "checkout.customer.double_opt_in_registration";
     };
     source: {
@@ -299,9 +70,7 @@ export interface CheckoutCustomerDoubleOptInRegistration {
 
 export interface CheckoutCustomerGuestRegister {
     data: {
-        payload: {
-            customer: Customer;
-        };
+        payload: unknown;
         event: "checkout.customer.guest_register";
     };
     source: {
@@ -315,10 +84,7 @@ export interface CheckoutCustomerGuestRegister {
 
 export interface CheckoutCustomerLogin {
     data: {
-        payload: {
-            customer: Customer;
-            contextToken: string;
-        };
+        payload: unknown;
         event: "checkout.customer.login";
     };
     source: {
@@ -332,9 +98,7 @@ export interface CheckoutCustomerLogin {
 
 export interface CheckoutCustomerLogout {
     data: {
-        payload: {
-            customer: Customer;
-        };
+        payload: unknown;
         event: "checkout.customer.logout";
     };
     source: {
@@ -348,9 +112,7 @@ export interface CheckoutCustomerLogout {
 
 export interface CheckoutCustomerRegister {
     data: {
-        payload: {
-            customer: Customer;
-        };
+        payload: unknown;
         event: "checkout.customer.register";
     };
     source: {
@@ -364,10 +126,7 @@ export interface CheckoutCustomerRegister {
 
 export interface CheckoutOrderPaymentMethodChanged {
     data: {
-        payload: {
-            order: Order;
-            orderTransaction: OrderTransaction;
-        };
+        payload: unknown;
         event: "checkout.order.payment_method.changed";
     };
     source: {
@@ -381,9 +140,7 @@ export interface CheckoutOrderPaymentMethodChanged {
 
 export interface CheckoutOrderPlaced {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "checkout.order.placed";
     };
     source: {
@@ -397,9 +154,7 @@ export interface CheckoutOrderPlaced {
 
 export interface ContactFormSend {
     data: {
-        payload: {
-            contactFormData: unknown;
-        };
+        payload: unknown;
         event: "contact_form.send";
     };
     source: {
@@ -413,10 +168,7 @@ export interface ContactFormSend {
 
 export interface CustomerGroupRegistrationAccepted {
     data: {
-        payload: {
-            customer: Customer;
-            customerGroup: CustomerGroup;
-        };
+        payload: unknown;
         event: "customer.group.registration.accepted";
     };
     source: {
@@ -430,10 +182,7 @@ export interface CustomerGroupRegistrationAccepted {
 
 export interface CustomerGroupRegistrationDeclined {
     data: {
-        payload: {
-            customer: Customer;
-            customerGroup: CustomerGroup;
-        };
+        payload: unknown;
         event: "customer.group.registration.declined";
     };
     source: {
@@ -447,12 +196,7 @@ export interface CustomerGroupRegistrationDeclined {
 
 export interface CustomerRecoveryRequest {
     data: {
-        payload: {
-            customerRecovery: CustomerRecovery;
-            customer: Customer;
-            resetUrl: string;
-            shopName: string;
-        };
+        payload: unknown;
         event: "customer.recovery.request";
     };
     source: {
@@ -466,10 +210,7 @@ export interface CustomerRecoveryRequest {
 
 export interface MailAfterCreateMessage {
     data: {
-        payload: {
-            data: string[];
-            message: unknown;
-        };
+        payload: unknown;
         event: "mail.after.create.message";
     };
     source: {
@@ -483,10 +224,7 @@ export interface MailAfterCreateMessage {
 
 export interface MailBeforeSend {
     data: {
-        payload: {
-            data: string[];
-            templateData: string[];
-        };
+        payload: unknown;
         event: "mail.before.send";
     };
     source: {
@@ -500,11 +238,7 @@ export interface MailBeforeSend {
 
 export interface MailSent {
     data: {
-        payload: {
-            subject: string;
-            contents: string;
-            recipients: string[];
-        };
+        payload: unknown;
         event: "mail.sent";
     };
     source: {
@@ -518,9 +252,7 @@ export interface MailSent {
 
 export interface NewsletterConfirm {
     data: {
-        payload: {
-            newsletterRecipient: NewsletterRecipient;
-        };
+        payload: unknown;
         event: "newsletter.confirm";
     };
     source: {
@@ -534,10 +266,7 @@ export interface NewsletterConfirm {
 
 export interface NewsletterRegister {
     data: {
-        payload: {
-            newsletterRecipient: NewsletterRecipient;
-            url: string;
-        };
+        payload: unknown;
         event: "newsletter.register";
     };
     source: {
@@ -551,9 +280,7 @@ export interface NewsletterRegister {
 
 export interface NewsletterUnsubscribe {
     data: {
-        payload: {
-            newsletterRecipient: NewsletterRecipient;
-        };
+        payload: unknown;
         event: "newsletter.unsubscribe";
     };
     source: {
@@ -567,9 +294,7 @@ export interface NewsletterUnsubscribe {
 
 export interface ProductExportLog {
     data: {
-        payload: {
-            name: string;
-        };
+        payload: unknown;
         event: "product_export.log";
     };
     source: {
@@ -583,10 +308,7 @@ export interface ProductExportLog {
 
 export interface ReviewFormSend {
     data: {
-        payload: {
-            reviewFormData: unknown;
-            product: Product;
-        };
+        payload: unknown;
         event: "review_form.send";
     };
     source: {
@@ -600,9 +322,7 @@ export interface ReviewFormSend {
 
 export interface StateEnterOrderStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order.state.cancelled";
     };
     source: {
@@ -616,9 +336,7 @@ export interface StateEnterOrderStateCancelled {
 
 export interface StateEnterOrderStateCompleted {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order.state.completed";
     };
     source: {
@@ -632,9 +350,7 @@ export interface StateEnterOrderStateCompleted {
 
 export interface StateEnterOrderStateInProgress {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order.state.in_progress";
     };
     source: {
@@ -648,9 +364,7 @@ export interface StateEnterOrderStateInProgress {
 
 export interface StateEnterOrderStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order.state.open";
     };
     source: {
@@ -664,9 +378,7 @@ export interface StateEnterOrderStateOpen {
 
 export interface StateEnterOrderDeliveryStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_delivery.state.cancelled";
     };
     source: {
@@ -680,9 +392,7 @@ export interface StateEnterOrderDeliveryStateCancelled {
 
 export interface StateEnterOrderDeliveryStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_delivery.state.open";
     };
     source: {
@@ -696,9 +406,7 @@ export interface StateEnterOrderDeliveryStateOpen {
 
 export interface StateEnterOrderDeliveryStateReturned {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_delivery.state.returned";
     };
     source: {
@@ -712,9 +420,7 @@ export interface StateEnterOrderDeliveryStateReturned {
 
 export interface StateEnterOrderDeliveryStateReturnedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_delivery.state.returned_partially";
     };
     source: {
@@ -728,9 +434,7 @@ export interface StateEnterOrderDeliveryStateReturnedPartially {
 
 export interface StateEnterOrderDeliveryStateShipped {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_delivery.state.shipped";
     };
     source: {
@@ -744,9 +448,7 @@ export interface StateEnterOrderDeliveryStateShipped {
 
 export interface StateEnterOrderDeliveryStateShippedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_delivery.state.shipped_partially";
     };
     source: {
@@ -760,9 +462,7 @@ export interface StateEnterOrderDeliveryStateShippedPartially {
 
 export interface StateEnterOrderLineItemStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_line_item.state.cancelled";
     };
     source: {
@@ -776,9 +476,7 @@ export interface StateEnterOrderLineItemStateCancelled {
 
 export interface StateEnterOrderLineItemStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_line_item.state.open";
     };
     source: {
@@ -792,9 +490,7 @@ export interface StateEnterOrderLineItemStateOpen {
 
 export interface StateEnterOrderLineItemStateReturnRequested {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_line_item.state.return_requested";
     };
     source: {
@@ -808,9 +504,7 @@ export interface StateEnterOrderLineItemStateReturnRequested {
 
 export interface StateEnterOrderLineItemStateReturned {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_line_item.state.returned";
     };
     source: {
@@ -824,9 +518,7 @@ export interface StateEnterOrderLineItemStateReturned {
 
 export interface StateEnterOrderLineItemStateReturnedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_line_item.state.returned_partially";
     };
     source: {
@@ -840,9 +532,7 @@ export interface StateEnterOrderLineItemStateReturnedPartially {
 
 export interface StateEnterOrderLineItemStateShipped {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_line_item.state.shipped";
     };
     source: {
@@ -856,9 +546,7 @@ export interface StateEnterOrderLineItemStateShipped {
 
 export interface StateEnterOrderLineItemStateShippedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_line_item.state.shipped_partially";
     };
     source: {
@@ -872,9 +560,7 @@ export interface StateEnterOrderLineItemStateShippedPartially {
 
 export interface StateEnterOrderReturnStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_return.state.cancelled";
     };
     source: {
@@ -888,9 +574,7 @@ export interface StateEnterOrderReturnStateCancelled {
 
 export interface StateEnterOrderReturnStateDone {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_return.state.done";
     };
     source: {
@@ -904,9 +588,7 @@ export interface StateEnterOrderReturnStateDone {
 
 export interface StateEnterOrderReturnStateInProgress {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_return.state.in_progress";
     };
     source: {
@@ -920,9 +602,7 @@ export interface StateEnterOrderReturnStateInProgress {
 
 export interface StateEnterOrderReturnStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_return.state.open";
     };
     source: {
@@ -936,9 +616,7 @@ export interface StateEnterOrderReturnStateOpen {
 
 export interface StateEnterOrderTransactionStateAuthorized {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.authorized";
     };
     source: {
@@ -952,9 +630,7 @@ export interface StateEnterOrderTransactionStateAuthorized {
 
 export interface StateEnterOrderTransactionStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.cancelled";
     };
     source: {
@@ -968,9 +644,7 @@ export interface StateEnterOrderTransactionStateCancelled {
 
 export interface StateEnterOrderTransactionStateChargeback {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.chargeback";
     };
     source: {
@@ -984,9 +658,7 @@ export interface StateEnterOrderTransactionStateChargeback {
 
 export interface StateEnterOrderTransactionStateFailed {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.failed";
     };
     source: {
@@ -1000,9 +672,7 @@ export interface StateEnterOrderTransactionStateFailed {
 
 export interface StateEnterOrderTransactionStateInProgress {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.in_progress";
     };
     source: {
@@ -1016,9 +686,7 @@ export interface StateEnterOrderTransactionStateInProgress {
 
 export interface StateEnterOrderTransactionStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.open";
     };
     source: {
@@ -1032,9 +700,7 @@ export interface StateEnterOrderTransactionStateOpen {
 
 export interface StateEnterOrderTransactionStatePaid {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.paid";
     };
     source: {
@@ -1048,9 +714,7 @@ export interface StateEnterOrderTransactionStatePaid {
 
 export interface StateEnterOrderTransactionStatePaidPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.paid_partially";
     };
     source: {
@@ -1064,9 +728,7 @@ export interface StateEnterOrderTransactionStatePaidPartially {
 
 export interface StateEnterOrderTransactionStateRefunded {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.refunded";
     };
     source: {
@@ -1080,9 +742,7 @@ export interface StateEnterOrderTransactionStateRefunded {
 
 export interface StateEnterOrderTransactionStateRefundedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.refunded_partially";
     };
     source: {
@@ -1096,9 +756,7 @@ export interface StateEnterOrderTransactionStateRefundedPartially {
 
 export interface StateEnterOrderTransactionStateReminded {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.reminded";
     };
     source: {
@@ -1112,9 +770,7 @@ export interface StateEnterOrderTransactionStateReminded {
 
 export interface StateEnterOrderTransactionStateUnconfirmed {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction.state.unconfirmed";
     };
     source: {
@@ -1128,9 +784,7 @@ export interface StateEnterOrderTransactionStateUnconfirmed {
 
 export interface StateEnterOrderTransactionCaptureStateCompleted {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction_capture.state.completed";
     };
     source: {
@@ -1144,9 +798,7 @@ export interface StateEnterOrderTransactionCaptureStateCompleted {
 
 export interface StateEnterOrderTransactionCaptureStateFailed {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction_capture.state.failed";
     };
     source: {
@@ -1160,9 +812,7 @@ export interface StateEnterOrderTransactionCaptureStateFailed {
 
 export interface StateEnterOrderTransactionCaptureStatePending {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction_capture.state.pending";
     };
     source: {
@@ -1176,9 +826,7 @@ export interface StateEnterOrderTransactionCaptureStatePending {
 
 export interface StateEnterOrderTransactionCaptureRefundStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction_capture_refund.state.cancelled";
     };
     source: {
@@ -1192,9 +840,7 @@ export interface StateEnterOrderTransactionCaptureRefundStateCancelled {
 
 export interface StateEnterOrderTransactionCaptureRefundStateCompleted {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction_capture_refund.state.completed";
     };
     source: {
@@ -1208,9 +854,7 @@ export interface StateEnterOrderTransactionCaptureRefundStateCompleted {
 
 export interface StateEnterOrderTransactionCaptureRefundStateFailed {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction_capture_refund.state.failed";
     };
     source: {
@@ -1224,9 +868,7 @@ export interface StateEnterOrderTransactionCaptureRefundStateFailed {
 
 export interface StateEnterOrderTransactionCaptureRefundStateInProgress {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction_capture_refund.state.in_progress";
     };
     source: {
@@ -1240,9 +882,7 @@ export interface StateEnterOrderTransactionCaptureRefundStateInProgress {
 
 export interface StateEnterOrderTransactionCaptureRefundStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_enter.order_transaction_capture_refund.state.open";
     };
     source: {
@@ -1256,9 +896,7 @@ export interface StateEnterOrderTransactionCaptureRefundStateOpen {
 
 export interface StateLeaveOrderStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order.state.cancelled";
     };
     source: {
@@ -1272,9 +910,7 @@ export interface StateLeaveOrderStateCancelled {
 
 export interface StateLeaveOrderStateCompleted {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order.state.completed";
     };
     source: {
@@ -1288,9 +924,7 @@ export interface StateLeaveOrderStateCompleted {
 
 export interface StateLeaveOrderStateInProgress {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order.state.in_progress";
     };
     source: {
@@ -1304,9 +938,7 @@ export interface StateLeaveOrderStateInProgress {
 
 export interface StateLeaveOrderStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order.state.open";
     };
     source: {
@@ -1320,9 +952,7 @@ export interface StateLeaveOrderStateOpen {
 
 export interface StateLeaveOrderDeliveryStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_delivery.state.cancelled";
     };
     source: {
@@ -1336,9 +966,7 @@ export interface StateLeaveOrderDeliveryStateCancelled {
 
 export interface StateLeaveOrderDeliveryStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_delivery.state.open";
     };
     source: {
@@ -1352,9 +980,7 @@ export interface StateLeaveOrderDeliveryStateOpen {
 
 export interface StateLeaveOrderDeliveryStateReturned {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_delivery.state.returned";
     };
     source: {
@@ -1368,9 +994,7 @@ export interface StateLeaveOrderDeliveryStateReturned {
 
 export interface StateLeaveOrderDeliveryStateReturnedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_delivery.state.returned_partially";
     };
     source: {
@@ -1384,9 +1008,7 @@ export interface StateLeaveOrderDeliveryStateReturnedPartially {
 
 export interface StateLeaveOrderDeliveryStateShipped {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_delivery.state.shipped";
     };
     source: {
@@ -1400,9 +1022,7 @@ export interface StateLeaveOrderDeliveryStateShipped {
 
 export interface StateLeaveOrderDeliveryStateShippedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_delivery.state.shipped_partially";
     };
     source: {
@@ -1416,9 +1036,7 @@ export interface StateLeaveOrderDeliveryStateShippedPartially {
 
 export interface StateLeaveOrderLineItemStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_line_item.state.cancelled";
     };
     source: {
@@ -1432,9 +1050,7 @@ export interface StateLeaveOrderLineItemStateCancelled {
 
 export interface StateLeaveOrderLineItemStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_line_item.state.open";
     };
     source: {
@@ -1448,9 +1064,7 @@ export interface StateLeaveOrderLineItemStateOpen {
 
 export interface StateLeaveOrderLineItemStateReturnRequested {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_line_item.state.return_requested";
     };
     source: {
@@ -1464,9 +1078,7 @@ export interface StateLeaveOrderLineItemStateReturnRequested {
 
 export interface StateLeaveOrderLineItemStateReturned {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_line_item.state.returned";
     };
     source: {
@@ -1480,9 +1092,7 @@ export interface StateLeaveOrderLineItemStateReturned {
 
 export interface StateLeaveOrderLineItemStateReturnedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_line_item.state.returned_partially";
     };
     source: {
@@ -1496,9 +1106,7 @@ export interface StateLeaveOrderLineItemStateReturnedPartially {
 
 export interface StateLeaveOrderLineItemStateShipped {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_line_item.state.shipped";
     };
     source: {
@@ -1512,9 +1120,7 @@ export interface StateLeaveOrderLineItemStateShipped {
 
 export interface StateLeaveOrderLineItemStateShippedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_line_item.state.shipped_partially";
     };
     source: {
@@ -1528,9 +1134,7 @@ export interface StateLeaveOrderLineItemStateShippedPartially {
 
 export interface StateLeaveOrderReturnStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_return.state.cancelled";
     };
     source: {
@@ -1544,9 +1148,7 @@ export interface StateLeaveOrderReturnStateCancelled {
 
 export interface StateLeaveOrderReturnStateDone {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_return.state.done";
     };
     source: {
@@ -1560,9 +1162,7 @@ export interface StateLeaveOrderReturnStateDone {
 
 export interface StateLeaveOrderReturnStateInProgress {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_return.state.in_progress";
     };
     source: {
@@ -1576,9 +1176,7 @@ export interface StateLeaveOrderReturnStateInProgress {
 
 export interface StateLeaveOrderReturnStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_return.state.open";
     };
     source: {
@@ -1592,9 +1190,7 @@ export interface StateLeaveOrderReturnStateOpen {
 
 export interface StateLeaveOrderTransactionStateAuthorized {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.authorized";
     };
     source: {
@@ -1608,9 +1204,7 @@ export interface StateLeaveOrderTransactionStateAuthorized {
 
 export interface StateLeaveOrderTransactionStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.cancelled";
     };
     source: {
@@ -1624,9 +1218,7 @@ export interface StateLeaveOrderTransactionStateCancelled {
 
 export interface StateLeaveOrderTransactionStateChargeback {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.chargeback";
     };
     source: {
@@ -1640,9 +1232,7 @@ export interface StateLeaveOrderTransactionStateChargeback {
 
 export interface StateLeaveOrderTransactionStateFailed {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.failed";
     };
     source: {
@@ -1656,9 +1246,7 @@ export interface StateLeaveOrderTransactionStateFailed {
 
 export interface StateLeaveOrderTransactionStateInProgress {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.in_progress";
     };
     source: {
@@ -1672,9 +1260,7 @@ export interface StateLeaveOrderTransactionStateInProgress {
 
 export interface StateLeaveOrderTransactionStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.open";
     };
     source: {
@@ -1688,9 +1274,7 @@ export interface StateLeaveOrderTransactionStateOpen {
 
 export interface StateLeaveOrderTransactionStatePaid {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.paid";
     };
     source: {
@@ -1704,9 +1288,7 @@ export interface StateLeaveOrderTransactionStatePaid {
 
 export interface StateLeaveOrderTransactionStatePaidPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.paid_partially";
     };
     source: {
@@ -1720,9 +1302,7 @@ export interface StateLeaveOrderTransactionStatePaidPartially {
 
 export interface StateLeaveOrderTransactionStateRefunded {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.refunded";
     };
     source: {
@@ -1736,9 +1316,7 @@ export interface StateLeaveOrderTransactionStateRefunded {
 
 export interface StateLeaveOrderTransactionStateRefundedPartially {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.refunded_partially";
     };
     source: {
@@ -1752,9 +1330,7 @@ export interface StateLeaveOrderTransactionStateRefundedPartially {
 
 export interface StateLeaveOrderTransactionStateReminded {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.reminded";
     };
     source: {
@@ -1768,9 +1344,7 @@ export interface StateLeaveOrderTransactionStateReminded {
 
 export interface StateLeaveOrderTransactionStateUnconfirmed {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction.state.unconfirmed";
     };
     source: {
@@ -1784,9 +1358,7 @@ export interface StateLeaveOrderTransactionStateUnconfirmed {
 
 export interface StateLeaveOrderTransactionCaptureStateCompleted {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction_capture.state.completed";
     };
     source: {
@@ -1800,9 +1372,7 @@ export interface StateLeaveOrderTransactionCaptureStateCompleted {
 
 export interface StateLeaveOrderTransactionCaptureStateFailed {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction_capture.state.failed";
     };
     source: {
@@ -1816,9 +1386,7 @@ export interface StateLeaveOrderTransactionCaptureStateFailed {
 
 export interface StateLeaveOrderTransactionCaptureStatePending {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction_capture.state.pending";
     };
     source: {
@@ -1832,9 +1400,7 @@ export interface StateLeaveOrderTransactionCaptureStatePending {
 
 export interface StateLeaveOrderTransactionCaptureRefundStateCancelled {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction_capture_refund.state.cancelled";
     };
     source: {
@@ -1848,9 +1414,7 @@ export interface StateLeaveOrderTransactionCaptureRefundStateCancelled {
 
 export interface StateLeaveOrderTransactionCaptureRefundStateCompleted {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction_capture_refund.state.completed";
     };
     source: {
@@ -1864,9 +1428,7 @@ export interface StateLeaveOrderTransactionCaptureRefundStateCompleted {
 
 export interface StateLeaveOrderTransactionCaptureRefundStateFailed {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction_capture_refund.state.failed";
     };
     source: {
@@ -1880,9 +1442,7 @@ export interface StateLeaveOrderTransactionCaptureRefundStateFailed {
 
 export interface StateLeaveOrderTransactionCaptureRefundStateInProgress {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction_capture_refund.state.in_progress";
     };
     source: {
@@ -1896,9 +1456,7 @@ export interface StateLeaveOrderTransactionCaptureRefundStateInProgress {
 
 export interface StateLeaveOrderTransactionCaptureRefundStateOpen {
     data: {
-        payload: {
-            order: Order;
-        };
+        payload: unknown;
         event: "state_leave.order_transaction_capture_refund.state.open";
     };
     source: {
@@ -1912,10 +1470,7 @@ export interface StateLeaveOrderTransactionCaptureRefundStateOpen {
 
 export interface UserRecoveryRequest {
     data: {
-        payload: {
-            userRecovery: UserRecovery;
-            resetUrl: string;
-        };
+        payload: unknown;
         event: "user.recovery.request";
     };
     source: {
